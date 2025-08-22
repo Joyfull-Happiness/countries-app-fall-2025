@@ -1,3 +1,15 @@
+body {
+  color: #111517;
+  background-color: #fafafa;
+  font-family: Nunito Sans;
+}
+
+.card {
+  background-color: #858585;
+}
+.button {
+  background-color: #7672ce;
+}
 @media (max-width: 375) {
   .card {
     width: 100%;
