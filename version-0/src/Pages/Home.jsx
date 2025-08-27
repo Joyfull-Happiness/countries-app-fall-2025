@@ -9,6 +9,7 @@ export default function Home({}) {
         <h3> Where in the World?</h3>
         <a hef>Saved Countries</a>
       </headder>
+      <body></body>
     </>
   );
 }
