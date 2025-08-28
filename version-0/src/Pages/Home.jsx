@@ -1,5 +1,5 @@
 import data from "../localData.js";
-import CountryDetail from "../compone./CountryDetail.jsx";
+import CountryDetail from "../component./CountryDetail.jsx";
 import React, { useState } from "react";
 
 export default function Home({}) {
@@ -9,7 +9,9 @@ export default function Home({}) {
         <h3> Where in the World?</h3>
         <a hef>Saved Countries</a>
       </headder>
-      <body></body>
+      <body>
+        <h1>Welcome to the Home Page</h1>;
+      </body>
     </>
   );
 }
