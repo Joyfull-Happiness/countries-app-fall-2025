@@ -35,6 +35,12 @@ body {
   font-weight: bold;
 }
 
+.card-description {
+  font-size: 0.95rem;
+  color: #555;
+  text-align: center;
+}
+
 @media (max-width: 375px) {
   .card {
     width: 100%;
