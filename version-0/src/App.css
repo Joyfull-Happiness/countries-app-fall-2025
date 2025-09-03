@@ -4,15 +4,17 @@ body {
   font-family: Nunito Sans;
 }
 
-.card {
-  background-color: #858585;
-}
 .button {
-  background-color: #7672ce;
+  background-color: #1f2535;
+  color: #fff;
+  border: 0.3px solid white;
+  height: 40px;
+  border-radius: 40px;
+  padding: 0.6em 1.2em;
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: #858585;
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
