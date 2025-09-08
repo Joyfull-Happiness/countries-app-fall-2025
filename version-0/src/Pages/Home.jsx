@@ -1,5 +1,5 @@
-import data from "../localData.js";
-import CountryDetail from "../component./CountryDetail.jsx";
+import localData from "../../localData.js";
+import CountryDetail from "./CountryDetail.jsx";
 import React, { useState } from "react";
 
 export default function Home({}) {
