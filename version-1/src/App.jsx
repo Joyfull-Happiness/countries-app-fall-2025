@@ -8,6 +8,17 @@ import SavedCountries from "./Pages/SavedCountries.jsx";
 function App() {
   return (
     <div>
+      <header>
+        <nav>
+          <Link to="/" className="homeHeader-link">
+            Where in the world?
+          </Link>
+
+          <Link to="/SavedCountries" className="savedCountries-link">
+            Saved Countries
+          </Link>
+        </nav>
+      </header>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SavedCountries" element={<SavedCountries />} />
