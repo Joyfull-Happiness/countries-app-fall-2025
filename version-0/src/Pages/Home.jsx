@@ -4,14 +4,13 @@ import React, { useState } from "react";
 
 export default function Home({}) {
   return (
-    <>
-      <headder>
-        <h3> Where in the World?</h3>
-        <a hef>Saved Countries</a>
-      </headder>
-      <body>
-        <h1>Welcome to the Home Page</h1>;
-      </body>
-    </>
+    <header className="header">
+      <a href="/home" className="homeHeader-link">
+        Where in the world?
+      </a>
+      <a href="/saved" className="savedCountries-link">
+        Saved Countries
+      </a>
+    </header>
   );
 }

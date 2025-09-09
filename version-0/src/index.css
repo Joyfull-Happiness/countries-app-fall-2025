@@ -3,3 +3,29 @@
   line-height: 1.5;
   font-weight: 400;
 }
+body {
+  color: #111517;
+  background-color: #fafafa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+}
+
+.homeHeader-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.savedCountries-link {
+  color: black;
+  text-decoration: none;
+
+  font-size: 1.2rem;
+}
