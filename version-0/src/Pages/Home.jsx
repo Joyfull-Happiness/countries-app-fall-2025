@@ -19,14 +19,12 @@ export default function Home({}) {
         </a>
       </header>
       <div className="card-container">
-        <div>
-          {sortedCountries.map((country) => (
-            <CountryCard
-              key={country.cca3 || country.cca2 || country.name?.common}
-              country={country}
-            />
-          ))}
-        </div>
+        {sortedCountries.map((country) => (
+          <CountryCard
+            key={country.cca3 || country.cca2 || country.name?.common}
+            country={country}
+          />
+        ))}
       </div>
     </>
   );

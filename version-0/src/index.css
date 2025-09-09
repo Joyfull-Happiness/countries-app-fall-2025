@@ -38,9 +38,8 @@ ul {
   /* find css to center saved countries */
 }
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
   padding: 2rem;
@@ -71,15 +70,23 @@ ul {
   object-fit: cover;
   display: block;
   margin-top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-@media (max-width: 375px) {
+@media (min-width: 500px) {
   .card-container {
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 1440px) {
+@media (min-width: 700px) {
   .card-container {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
