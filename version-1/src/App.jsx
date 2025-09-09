@@ -1,21 +1,17 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import Home from "./Pages/Home.jsx";
+import SavedCountries from "./Pages/SavedCountries.jsx";
+// import localData from "../../localData.js";
+
+// import CountryDetail from "./CountryDetail.jsx";
 
 function App() {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/SavedCountries" element={<SavedCountries />} />
+        {/* <Route path="/CountryDetail" element={<CountryDetail />} /> */}
       </Routes>
     </div>
   );

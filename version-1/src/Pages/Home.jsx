@@ -1,17 +1,34 @@
 import localData from "../../localData.js";
 import CountryDetail from "./CountryDetail.jsx";
+import CountryCard from "./CountryCard.jsx";
+import { Link } from "react-router-dom";
+
+// import SavedCountries from "./SavedCountries.jsx";
 import React, { useState } from "react";
 
 export default function Home({}) {
+  const sortedCountries = [...localData].sort((a, b) =>
+    a.name.common.localeCompare(b.name.common)
+  );
   return (
     <>
-      <headder>
-        <h3> Where in the World?</h3>
-        <a hef>Saved Countries</a>
-      </headder>
-      <body>
-        <h1>Welcome to the Home Page</h1>;
-      </body>
+      <header className="header">
+        <Link to="/" className="homeHeader-link">
+          Where in the world?
+        </Link>
+
+        <Link to="/SavedCountries" className="savedCountries-link">
+          Saved Countries
+        </Link>
+      </header>
+      <div className="card-container">
+        {sortedCountries.map((country) => (
+          <CountryCard
+            key={country.cca3 || country.cca2 || country.name?.common}
+            country={country}
+          />
+        ))}
+      </div>
     </>
   );
 }
