@@ -1,6 +1,8 @@
 import localData from "../../localData.js";
 import CountryDetail from "./CountryDetail.jsx";
 import CountryCard from "./CountryCard.jsx";
+import { Link } from "react-router-dom";
+
 // import SavedCountries from "./SavedCountries.jsx";
 import React, { useState } from "react";
 
@@ -11,12 +13,13 @@ export default function Home({}) {
   return (
     <>
       <header className="header">
-        <a href="/Home" className="homeHeader-link">
+        <Link to="/" className="homeHeader-link">
           Where in the world?
-        </a>
-        <a href="/SavedCountries" className="savedCountries-link">
+        </Link>
+
+        <Link to="/SavedCountries" className="savedCountries-link">
           Saved Countries
-        </a>
+        </Link>
       </header>
       <div className="card-container">
         {sortedCountries.map((country) => (
