@@ -13,20 +13,24 @@ it's saying if hte capitol is an array, string or there is nothing display them
     : country?.capital || "—";
 
   return (
-    <article className="card">
-      <img className="card-flag" src={flagUrl} alt={`${title} flag`} />
-      <div className="card-body">
-        <h3 className="card-title">{title}</h3>
-        <p>
-          <strong>Population:</strong> {population}
-        </p>
-        <p>
-          <strong>Region:</strong> {region}
-        </p>
-        <p>
-          <strong>Capital:</strong> {capital}
-        </p>
+    <Link to={`/country/${country.name.common}`}>
+      <div className="CountryCard">
+        <article className="card">
+          <img className="card-flag" src={flagUrl} alt={`${title} flag`} />
+          <div className="card-body">
+            <h3 className="card-title">{title}</h3>
+            <p>
+              <strong>Population:</strong> {population}
+            </p>
+            <p>
+              <strong>Region:</strong> {region}
+            </p>
+            <p>
+              <strong>Capital:</strong> {capital}
+            </p>
+          </div>
+        </article>
       </div>
-    </article>
+    </Link>
   );
 }
