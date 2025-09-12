@@ -21,7 +21,7 @@ it's saying if hte capitol is an array, string or there is nothing display them
           <div className="card-body">
             <h3 className="card-title">{title}</h3>
             <p>
-              <strong>Population:</strong> {population}
+              <strong>Population:</strong> {population.toLocaleString("en-US")}
             </p>
             <p>
               <strong>Region:</strong> {region}
