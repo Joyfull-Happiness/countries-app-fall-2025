@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function CountryCard({ country }) {
   const title = country?.name?.common || "Unknown";
@@ -13,7 +14,7 @@ it's saying if hte capitol is an array, string or there is nothing display them
     : country?.capital || "—";
 
   return (
-    <Link to={`/country/${country.name.common}`}>
+    <Link className="all-links" to={`/country-detail/${country.name.common}`}>
       <div className="CountryCard">
         <article className="card">
           <img className="card-flag" src={flagUrl} alt={`${title} flag`} />
