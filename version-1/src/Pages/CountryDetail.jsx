@@ -19,35 +19,33 @@ export default function CountryDetail({ getCountriesData, countries }) {
 
   return (
     <>
-      <button onClick={getCountriesData}>Refresh</button>
-
-      <main className="page">
-        <Link className="all-links" to="/">
+      <main className="detail-page">
+        <Link className="back-btn" to="/">
           ← Back
         </Link>
-        <article className="card" style={{ maxWidth: 520 }}>
+
+        <div className="detail-layout">
           <img
-            className="card-flag"
+            className="detail-flag"
             src={country.flags?.png || country.flags?.svg}
             alt={`${country.name?.common} flag`}
           />
-          <div className="card-body">
-            <h2 className="card-title">{country.name?.common}</h2>
-            <p>
-              <strong>Population:</strong>{" "}
-              {country.population.toLocaleString("en-US")}
-            </p>
-            <p>
-              <strong>Region:</strong> {country.region}
-            </p>
-            <p>
-              <strong>Capital:</strong>{" "}
-              {Array.isArray(country.capital)
-                ? country.capital[0]
-                : country.capital || "—"}
-            </p>
-          </div>
-        </article>
+
+          <h2 className="detail-title">{country.name?.common}</h2>
+          <p>
+            <strong>Population:</strong>{" "}
+            {country.population.toLocaleString("en-US")}
+          </p>
+          <p>
+            <strong>Region:</strong> {country.region}
+          </p>
+          <p>
+            <strong>Capital:</strong>{" "}
+            {Array.isArray(country.capital)
+              ? country.capital[0]
+              : country.capital || "—"}
+          </p>
+        </div>
       </main>
     </>
   );
