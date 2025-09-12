@@ -12,15 +12,6 @@ export default function Home({}) {
   );
   return (
     <>
-      <header className="header">
-        <Link to="/" className="homeHeader-link">
-          Where in the world?
-        </Link>
-
-        <Link to="/SavedCountries" className="savedCountries-link">
-          Saved Countries
-        </Link>
-      </header>
       <div className="card-container">
         {sortedCountries.map((country) => (
           <CountryCard
