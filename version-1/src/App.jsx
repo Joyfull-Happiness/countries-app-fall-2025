@@ -53,7 +53,6 @@ function App() {
               countries={countries}
               getCountriesData={getCountriesData}
             />
-            // use params to (:countryname) put into a variable in country detail page
           }
         />{" "}
       </Routes>

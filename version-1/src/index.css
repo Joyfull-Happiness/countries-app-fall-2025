@@ -156,8 +156,6 @@ header {
 /* Country Details Page*/
 
 .detail-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
   margin-top: 2rem;

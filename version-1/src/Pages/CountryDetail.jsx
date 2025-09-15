@@ -8,21 +8,14 @@ export default function CountryDetail({ getCountriesData, countries }) {
     return countryObject.name.common === countryName;
   });
 
-  if (!country) {
-    return (
-      <main className="page">
-        <p>Loading…</p>
-        <button onClick={getCountriesData}>Refresh</button>
-      </main>
-    );
-  }
-
   return (
     <>
       <main className="detail-page">
-        <Link className="back-btn" to="/">
-          ← Back
-        </Link>
+        <div>
+          <Link className="back-btn" to="/">
+            ← Back
+          </Link>
+        </div>
 
         <div className="detail-layout">
           <img
