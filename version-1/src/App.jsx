@@ -10,6 +10,7 @@ function App() {
   // global variables
   const [countries, setCountries] = useState([]);
 
+  //this is the function that calls the API for the countries and thier information
   const getCountriesData = async () => {
     try {
       const response = await fetch(
@@ -44,7 +45,7 @@ function App() {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home countries={countries} />} />
         <Route path="/SavedCountries" element={<SavedCountries />} />
         <Route
           path="/country-detail/:countryName"

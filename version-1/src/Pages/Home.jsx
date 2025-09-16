@@ -5,8 +5,8 @@ import SavedCountries from "./SavedCountries.jsx";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
-export default function Home({}) {
-  const sortedCountries = [...localData].sort((a, b) =>
+export default function Home({ countries }) {
+  const sortedCountries = [...countries].sort((a, b) =>
     a.name.common.localeCompare(b.name.common)
   );
   return (

@@ -17,27 +17,27 @@ export default function CountryDetail({ getCountriesData, countries }) {
           </Link>
         </div>
 
-        <div className="detail-layout">
-          <img
-            className="detail-flag"
-            src={country.flags?.png || country.flags?.svg}
-            alt={`${country.name?.common} flag`}
-          />
-
-          <h2 className="detail-title">{country.name?.common}</h2>
-          <p>
-            <strong>Population:</strong>{" "}
-            {country.population.toLocaleString("en-US")}
-          </p>
-          <p>
-            <strong>Region:</strong> {country.region}
-          </p>
-          <p>
-            <strong>Capital:</strong>{" "}
-            {Array.isArray(country.capital)
-              ? country.capital[0]
-              : country.capital || "—"}
-          </p>
+        <div className="detail-container">
+          <div className="detail-flag-container">
+            <img
+              className="detail-flag"
+              src={country.flags?.png || country.flags?.svg}
+              alt={`${country.name?.common} flag`}
+            />
+          </div>
+          <div className="detail-countryInfo">
+            <h2>{country.name?.common}</h2>
+            <p>
+              <strong>Population:</strong>{" "}
+              {country.population.toLocaleString("en-US")}
+            </p>
+            <p>
+              <strong>Region:</strong> {country.region}
+            </p>
+            <p>
+              <strong>Capital:</strong> {country.capital}
+            </p>
+          </div>
         </div>
       </main>
     </>
