@@ -57,29 +57,35 @@ Add more steps as needed!
 :bar_chart: SAVED COUNTRIES DATA
 ------------------------
 WHAT data should we store & retrieve?
-KEY: "_______"
-VALUE: _______
-VALUE DATA TYPE: _______
-EXAMPLE VALUE: _______
+KEY: "savedCountries"
+VALUE: the page will have a list of saved countries in card form using similar format to the main page
+VALUE DATA TYPE: array of objects 
+EXAMPLE VALUE: {
+   name: Finland 
+   flag: image 
+   population: 45,245,532
+   capitol: Helsinki 
+
+}
 ------------------------
 :large_orange_diamond: STORING SAVED COUNTRIES DATA
 ------------------------
-WHEN: _______
-WHERE: _______
+WHEN: when a user clicks the save country button on the country details page 
+WHERE: this will happen on the country details page on the detail-countryInfo child of the detail-container 
 HOW:
-Step 1: _______
-Step 2: _______
-Step 3: _______
-Add more steps as needed!
+Step 1: on save the code will look at the "savedCountries" list on local storage   
+Step 2: then use an if conditional: if the list is empty and the exsisting country is not there then add to the list as an object else don't add 
+Step 3: then you have to convert the info into stringified information and store it locally to the JSON list 
+
 ------------------------
 :large_orange_diamond: RETRIEVING SAVED COUNTRIES DATA
 ------------------------
-WHEN: _______
-WHERE: _______
+WHEN: when teh user clicks on the saved countries page
+WHERE: savedcountries using the info from localStorage 
 HOW:
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Step 1: using useEffect we can run the savedcountries information when teh savedCountries page loads 
+Step 2: The coputer has to then get the information of the saved conutries from the local storage and display it back to the user 
+Step 3: but the list of saved countries into a state variable 
 Add more steps as needed!
 ------------------------
 :bar_chart: COUNTRY COUNTS DATA

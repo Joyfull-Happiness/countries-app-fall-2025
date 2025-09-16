@@ -27,6 +27,9 @@ export default function CountryDetail({ getCountriesData, countries }) {
           </div>
           <div className="detail-countryInfo">
             <h2>{country.name?.common}</h2>
+            <div>
+              <Link className="save-btn">Save</Link>
+            </div>
             <p>
               <strong>Population:</strong>{" "}
               {country.population.toLocaleString("en-US")}
