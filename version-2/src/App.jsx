@@ -45,7 +45,10 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home countries={countries} />} />
-        <Route path="/SavedCountries" element={<SavedCountries />} />
+        <Route
+          path="/SavedCountries"
+          element={<SavedCountries countries={countries} />}
+        />
         <Route
           path="/country-detail/:countryName"
           element={

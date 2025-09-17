@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
 export default function Home({ countries }) {
-  const sortedCountries = [...countries].sort((a, b) =>
-    a.name.common.localeCompare(b.name.common)
+  // Here i am sorting the countries by the "common" name in alphabetical order
+  const sortedCountries = countries.sort((firstCountry, secondCountry) =>
+    firstCountry.name.common > secondCountry.name.common ? 1 : -1
   );
+
   return (
     <>
       <div className="card-container">
+        {/* Below i am looping through the sortedCountries array and displaying a CountryCard for each one */}
         {sortedCountries.map((country) => (
-          <CountryCard
-            key={country.cca3 || country.cca2 || country.name?.common}
-            country={country}
-          />
+          // I am making a key for each CountryCard using the country’s common name
+          <CountryCard key={country.name?.common} country={country} />
         ))}
       </div>
     </>
