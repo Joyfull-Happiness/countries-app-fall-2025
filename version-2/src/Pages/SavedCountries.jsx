@@ -9,7 +9,7 @@ export default function SavedCountries({ countries }) {
   // here i am creating a usestate to hold the saved countries list
   const [savedCountries, setSavedCountries] = useState([]);
   // the variable needed to display the country to the user via usestate
-  const [matchedCountry, setMatchedCountry] = useState(null);
+  const [saveCheck, setSaveCheck] = useState(false);
 
   // Update the state when input values change
   const handleInputChange = (e) => {
@@ -36,26 +36,21 @@ export default function SavedCountries({ countries }) {
   // run this once the page loads
   useEffect(() => {
     // here we are puting saved Countries into a variable and storing the local storage conutryNames inside of it
-    const countriesLocalData =
-      JSON.parse(localStorage.getItem("countryNames")) || [];
+    const countriesLocalData = JSON.parse(
+      localStorage.getItem("countryNames") ?? "[]"
+    );
+
     // below i am looping through each of the countries names saved locally and givin the if condition that if they match the country name from the API then display it to the usuer
     setSavedCountries(countriesLocalData);
 
+    // below i am saying for each country listed in the local countries data if
+    // the saved country matches an exsisting country set the savecheck to true for the country
     countriesLocalData.forEach((savedCountry) => {
       if (savedCountry === country.name.common) {
-        setMatchedCountry(savedCountry);
+        setSaveCheck(true);
       }
     });
   }, []);
-
-  {
-    /* Step 1: make if statement to see if countries has value 
-    if it does you want to 
-    Step2: 
-    
-    
-    */
-  }
 
   return (
     <>
@@ -63,11 +58,10 @@ export default function SavedCountries({ countries }) {
         <section className="section">
           <h2>My Saved Countries</h2>
           <div className="saved-list">
-            {/* static placeholder cards or empty state */}
-            <div>
-              <h2>{country.name.common}</h2>
+            {/* if save check is true  country is saved so display its card */}
+            {saveCheck && (
               <CountryCard key={country.name?.common} country={country} />
-            </div>
+            )}
           </div>
         </section>
         {userInfo && <h2>Welcome {userInfo.fullName}!</h2>}
