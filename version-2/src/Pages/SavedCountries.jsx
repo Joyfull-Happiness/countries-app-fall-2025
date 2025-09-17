@@ -32,6 +32,8 @@ export default function SavedCountries() {
       setUserInfo(profileDeStringified);
     }
   }, []);
+
+  // make another if useeffect for saved countries
   return (
     <>
       <main className="page">

@@ -199,9 +199,11 @@ header {
   border-radius: 10px;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
   background: #fff;
-  margin: 2rem;
+  margin: 1rem;
+  margin-left: 0rem;
   width: 300px;
   height: 200px;
+  align-items: left;
 }
 
 /* END OF COUNTRY DETAILS PAGE */
@@ -226,7 +228,7 @@ header {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   .detail-flag {
-    width: 500px;
-    height: 400px;
+    width: 400px;
+    height: 300px;
   }
 }

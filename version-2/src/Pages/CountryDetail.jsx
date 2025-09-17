@@ -4,6 +4,17 @@ export default function CountryDetail({ getCountriesData, countries }) {
   // get this country's name from the URL parameter
   const countryName = useParams().countryName;
 
+  function clickHandler(countryName) {
+    // Get the saved countries list from localStorage
+    let savedCountries = JSON.parse(localStorage.getItem("countryName")) || [];
+
+    // Add the new country to the array
+    savedCountries.push(countryName);
+
+    // Save the updated array back into localStorage
+    localStorage.setItem("countryName", JSON.stringify(savedCountries));
+  }
+
   const country = countries.find((countryObject) => {
     return countryObject.name.common === countryName;
   });
@@ -28,7 +39,13 @@ export default function CountryDetail({ getCountriesData, countries }) {
           <div className="detail-countryInfo">
             <h2>{country.name?.common}</h2>
             <div>
-              <Link className="save-btn">Save</Link>
+              {/* click handler function and input country name */}
+              <button
+                onClick={() => clickHandler(country.name.common)}
+                className="save-btn"
+              >
+                Save
+              </button>
             </div>
             <p>
               <strong>Population:</strong>{" "}

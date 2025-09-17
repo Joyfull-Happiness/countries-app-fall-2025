@@ -59,13 +59,10 @@ Add more steps as needed!
 WHAT data should we store & retrieve?
 KEY: "savedCountries"
 VALUE: the page will have a list of saved countries in card form using similar format to the main page
-VALUE DATA TYPE: array of objects 
+VALUE DATA TYPE: array of strings 
 EXAMPLE VALUE: {
-   name: Finland 
-   flag: image 
-   population: 45,245,532
-   capitol: Helsinki 
-
+  Finland, Jamaica, USA
+   
 }
 ------------------------
 :large_orange_diamond: STORING SAVED COUNTRIES DATA
