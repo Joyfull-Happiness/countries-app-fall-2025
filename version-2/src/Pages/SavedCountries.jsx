@@ -7,6 +7,9 @@ export default function SavedCountries() {
   // this holds the user's profile information, if a user previously submitted the form
   const [userInfo, setUserInfo] = useState(null);
 
+  // here i am creating a usestate to hold the saved countries list
+  const [savedCountries, setSavedCountries] = useState([]);
+
   // Update the state when input values change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +36,13 @@ export default function SavedCountries() {
     }
   }, []);
 
-  // make another if useeffect for saved countries
+  // make another if useeffect for saved countries where the information from the local storage is getting saved into the variable countriesLocalData wh
+  useEffect(() => {
+    const countriesLocalData =
+      JSON.parse(localStorage.getItem("countryNames")) || [];
+    setSavedCountries(countriesLocalData);
+  }, []);
+
   return (
     <>
       <main className="page">
@@ -41,7 +50,7 @@ export default function SavedCountries() {
           <h2>My Saved Countries</h2>
           <div className="saved-list">
             {/* static placeholder cards or empty state */}
-            <p>No countries saved yet.</p>
+            <div>{savedCountries.join(", ")}.</div>
           </div>
         </section>
         {userInfo && <h2>Welcome {userInfo.fullName}!</h2>}

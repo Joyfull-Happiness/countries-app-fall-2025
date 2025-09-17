@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: nunito-sans;
   line-height: 1.5;
   font-weight: 400;
 }
@@ -7,7 +9,7 @@ body {
   color: #111517;
   background-color: #fafafa;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-family: sans-serif;
+  font-family: sans-serif, nunito-sans;
   margin: 0 auto;
   padding: 2rem 1.25rem;
   background: #f5f5f5;
@@ -96,7 +98,7 @@ header {
 .profile-form textarea {
   width: 100%;
   padding: 0.9rem 1rem;
-  border: 1px solid #eee;
+  border: 1px solid #858585;
   border-radius: 8px;
   background: #fff;
   font-size: 0.95rem;
@@ -112,12 +114,12 @@ header {
 
 .profile-form input::placeholder,
 .profile-form textarea::placeholder {
-  color: #9aa0a6;
+  color: #858585;
 }
 
 .profile-form input:focus,
 .profile-form textarea:focus {
-  border-color: #b9c1ff;
+  border-color: #858585;
   box-shadow: 0 0 0 3px rgba(90, 102, 241, 0.15);
 }
 
@@ -129,7 +131,7 @@ header {
   justify-content: center;
   border: none;
   border-radius: 6px;
-  background: linear-gradient(90deg, #6a5acd, #7c6cf0);
+  background: linear-gradient(90deg, #6a5acd, #7672ce);
   color: #fff;
   font-size: 0.9rem;
   cursor: pointer;

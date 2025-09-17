@@ -5,10 +5,10 @@ export default function CountryDetail({ getCountriesData, countries }) {
   const countryName = useParams().countryName;
 
   function clickHandler(countryName) {
-    // Get the saved countries list from localStorage
+    // Get the saved countries list from localStorage with exsisting names or without any exissiting names.
     let savedCountries = JSON.parse(localStorage.getItem("countryName")) || [];
 
-    // Add the new country to the array
+    // Add the new country to the array of strings using the key countryName
     savedCountries.push(countryName);
 
     // Save the updated array back into localStorage
