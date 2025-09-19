@@ -41,14 +41,12 @@ export default function SavedCountries({ countries }) {
 
     setSavedCountries(countries);
 
-    const savedCountriesSorted =
-      // below i am saying for each country listed in the local countries data if
-      // the saved country matches an exsisting country set the savecheck to true for the country
-      countriesLocalData.forEach((savedCountry) => {
-        if (savedCountry === country.name.common) {
-          // it's going to set the setSaveChecked state to true
-        }
-      });
+    // below i am saying for each country listed in the local countries data if the saved country matches an exsisting country set the savecheck to true for the country
+    // const savedCountriesSorted = countriesLocalData.forEach((savedCountry) => {
+    //   if (savedCountry === country.name.common) {
+    //     // it's going to set the setSaveChecked state to true
+    //   }
+    // });
   }, []);
   // };
 
@@ -58,10 +56,8 @@ export default function SavedCountries({ countries }) {
         <section className="section">
           <h2>My Saved Countries</h2>
           <div className="saved-list">
-            {/* if save check is true  country is saved so display its card */}
-            {/* {saveCheck && (
-              <CountryCard key={country.name?.common} country={country} />
-            )} */}
+            if (savedCountry === country.name.common)
+            {<CountryCard key={country.name?.common} country={country} />}
           </div>
         </section>
         {userInfo && <h2>Welcome {userInfo.fullName}!</h2>}

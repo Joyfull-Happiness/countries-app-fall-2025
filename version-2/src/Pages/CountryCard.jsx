@@ -9,9 +9,7 @@ export default function CountryCard({ country }) {
   /*this is displaying different ways of gathering the countries capitol as some countries have multiple capitols
 it's saying if hte capitol is an array, string or there is nothing display them
   */
-  const capital = Array.isArray(country?.capital)
-    ? country.capital[0] || "—"
-    : country?.capital || "—";
+  const capital = country.capital;
 
   return (
     <Link className="all-links" to={`/country-detail/${country.name.common}`}>
