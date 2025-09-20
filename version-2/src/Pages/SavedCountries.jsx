@@ -39,13 +39,21 @@ export default function SavedCountries({ countries }) {
     let countriesLocalData = JSON.parse(localStorage.getItem("countryName"));
 
     // below i am saying for each country listed in the local countries data if the saved country matches an exsisting country set the savecheck to true for the country
+    const savedCountriesSorted = savedCountries.filter((savedCountry) =>
+      filters.includes(savedCountries.name)
+    );
 
-    const savedCountriesSorted = countriesLocalData.filter((savedCountry) => {
+    {
+      /*
+      const savedCountriesSorted = countriesLocalData.filter((savedCountry) => {
       console.log("saved Country", savedCountry);
       savedCountry === country.name.common;
       console.log("saved name", country.name.common);
     });
     console.log("savedCountriesSorted", savedCountriesSorted);
+      
+      */
+    }
 
     setSavedCountries(savedCountriesSorted);
   }, []);
