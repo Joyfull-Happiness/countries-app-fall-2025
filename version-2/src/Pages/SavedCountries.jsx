@@ -44,7 +44,7 @@ export default function SavedCountries({ countries }) {
     // display the card of the country
 
     // Load saved countries from localStorage and update state
-    const countriesLocalData = localStorage.getItem("countryName");
+    const countriesLocalData = localStorage.getItem("countryNames");
 
     if (countriesLocalData) {
       const savedLocalCountries = JSON.parse(countriesLocalData);
