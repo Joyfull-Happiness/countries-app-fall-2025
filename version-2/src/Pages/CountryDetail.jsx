@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 export default function CountryDetail({ getCountriesData, countries }) {
@@ -17,6 +17,20 @@ export default function CountryDetail({ getCountriesData, countries }) {
 
     // Save the updated array back into localStorage
     localStorage.setItem("countryNames", JSON.stringify(savedCountries));
+
+    useEffect(() => {
+      // this is going to count the number of times the country is visited.
+
+      const viewCountsFromLocalStorage =
+        JSON.parse(localStorage.getItem("countryViews")) || {};
+      const newViewCounts = (viewCountsLocalStorage[country] || 0) + 1;
+      viewCountsLocalStorage[country] = newCount;
+      localStorage.setItem(
+        "countryViews",
+        JSON.stringify(viewCountsFromLocalStorage)
+      );
+      setCountryView(newCount);
+    });
   }
 
   const country = countries.find((countryObject) => {
