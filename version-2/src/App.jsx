@@ -16,7 +16,7 @@ function App() {
         "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders"
       );
       const data = await response.json();
-      console.log(data);
+      console.log("data from API", data);
       setCountries(data);
     } catch (error) {
       console.log("Error: " + error.message);

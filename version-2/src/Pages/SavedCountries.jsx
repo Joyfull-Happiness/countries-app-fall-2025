@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CountryCard from "./CountryCard";
 
 export default function SavedCountries({ countries }) {
+  console.log(countries, "countries prop saved countries");
   const emptyFormState = { fullName: "", email: "", country: "", bio: "" };
   // this holds the current state of the form inputs
   const [formData, setFormData] = useState(emptyFormState);
@@ -19,50 +20,44 @@ export default function SavedCountries({ countries }) {
     e.preventDefault();
     console.log(formData, "form was submitted");
 
+    // storing the form data into local storage:
     localStorage.setItem("profile", JSON.stringify(formData));
 
     setUserInfo(formData);
     // reset the form to empty state
     setFormData(emptyFormState);
   };
-  // console.log("userInfo", userInfo);
-  // run this once the page loads
+  // run this useEffect once the page loads
   useEffect(() => {
     if (localStorage.getItem("profile")) {
+      // this is destringing the local storage item profile and saving it in the variable profileDeStringified
       let profileDeStringified = JSON.parse(localStorage.getItem("profile"));
 
-      // console.log("profileDeStringified", profileDeStringified);
+      // this is setting the userInfo to the variable profileDeStringified so the profile information is no longer a string and is now an array.
       setUserInfo(profileDeStringified);
     }
 
-    // here we are puting saved Countries into a variable and storing the local storage conutryNames inside of it
-    let countriesLocalData = JSON.parse(localStorage.getItem("countryName"));
+    // gather the api data through {countries} in the useState that is being passed into SavedCountries
+    // then you're matching it to the local data (names of countries) that are being passed through. conditional?
+    // then you're saving the conditional results into a variable
+    // pass that variable in as a java script method and use the .map method to loop through the array
+    // display the card of the country
 
-    // below i am saying for each country listed in the local countries data if the saved country matches an exsisting country set the savecheck to true for the country
-    const savedCountriesSorted = savedCountries.filter((savedCountry) =>
-      filters.includes(savedCountries.name)
-    );
+    // Load saved countries from localStorage and update state
+    const countriesLocalData = localStorage.getItem("countryName");
 
-    {
-      /*
-      const savedCountriesSorted = countriesLocalData.filter((savedCountry) => {
-      console.log("saved Country", savedCountry);
-      savedCountry === country.name.common;
-      console.log("saved name", country.name.common);
-    });
-    console.log("savedCountriesSorted", savedCountriesSorted);
-      
-      */
+    if (countriesLocalData) {
+      const savedLocalCountries = JSON.parse(countriesLocalData);
+
+      console.log("countriesLocalData", countriesLocalData);
+      setSavedCountries(savedLocalCountries); // Set the state to saved countries
     }
-
-    setSavedCountries(savedCountriesSorted);
   }, []);
 
-  // gather the api data through {countries} in the useState that is being passed into SavedCountries
-  // then you're matching it to the local data (names of countries) that are being passed through. conditional?
-  // then you're saving the conditional results into a variable
-  // pass that variable in as a java script method and use the .map method to loop through the array
-  // display the card of the country
+  const filteredItems = countries.filter((item) =>
+    savedCountries.includes(item.name.common)
+  );
+  console.log("Filtered Items", filteredItems);
 
   return (
     <>
@@ -70,11 +65,8 @@ export default function SavedCountries({ countries }) {
         <section className="section">
           <h2>My Saved Countries</h2>
           <div className="saved-list">
-            {savedCountries.map((savedCountry) => (
-              <CountryCard
-                key={country.name?.common}
-                savedCountry={savedCountry}
-              />
+            {filteredItems.map((savedCountry, key) => (
+              <CountryCard key={key} country={savedCountry} />
             ))}
           </div>
         </section>

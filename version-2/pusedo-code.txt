@@ -102,22 +102,23 @@ Step 4: Render the state variable in JSX as countryCards.
 :bar_chart: COUNTRY COUNTS DATA
 ------------------------
 WHAT data should we store & retrieve?
-KEY: "___countryViewsCounter____"
-VALUE: every time a country's page is viewed it counts it. 
-VALUE DATA TYPE: it will be an object where each conutry has it's viewcount
-EXAMPLE VALUE: {
-   "Argentina": 3
-   "Brazil": 4
-   "Canada": 23
-}
+KEY: the countries name 
+VALUE: (the variable that holds the number) country's viewCount as a Numberevery
+VALUE DATA TYPE: number 
+EXAMPLE VALUE:
+  5
+
 ------------------------
 :large_orange_diamond: STORING & RETRIEVING COUNTRY COUNTS DATA
 ------------------------
 NOTE: We combine storing & retrieving country counts data into one section because they always happen together. Each time we look up a country’s view count, we also need to increase it and save the new total.
-WHEN: each time a Country's country Detail page opens
+WHEN: each time a Country's country Detail page opens (on page visit) 
 WHERE: CountryDetail
 HOW:
-Step 1: When the page loads use useEffect to look at the countryViewCounts on the local storage (if it's blank then it will have an empty object)
-Step 2: get the local storage object to match
-Step 3: _______
-Add more steps as needed!
+Step 1: create a useState for the viewCOunt When the page loads use useEffect to look at the countryViewCounts on the local storage (if it's blank then it will have an empty object)
+Step 2: useEffect t0:
+   1. retreave the current viewCOunt 
+      2. then add one 
+   3. then store the new number in local storage
+Step 3:update the value of the viewCount using setViewCount 
+Step 4: show it back to the user  by rendering it in the JSX

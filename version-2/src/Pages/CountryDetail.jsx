@@ -1,11 +1,15 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 export default function CountryDetail({ getCountriesData, countries }) {
   // get this country's name from the URL parameter
   const countryName = useParams().countryName;
 
+  // setting the useState for visitcount
+  const [countryView, setCountryView] = useState(0);
+
   function clickHandler(countryName) {
-    // Get the saved countries list from localStorage with exsisting names or without any exissiting names.
+    // Get the saved countries list from localStorage with exsisting names or without any exisisting names.
     let savedCountries = JSON.parse(localStorage.getItem("countryNames")) || [];
 
     // Add the new country to the array of strings using the key countryName
@@ -56,6 +60,9 @@ export default function CountryDetail({ getCountriesData, countries }) {
             </p>
             <p>
               <strong>Capital:</strong> {country.capital}
+            </p>
+            <p>
+              <strong>Visits:</strong> {countryView}
             </p>
           </div>
         </div>

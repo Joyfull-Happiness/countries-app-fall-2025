@@ -147,6 +147,11 @@ header {
 }
 
 .saved-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  -ms-flex-align: stretch;
   background: #f7f7f7;
   border: 1px dashed #e5e7eb;
   border-radius: 8px;
@@ -223,6 +228,9 @@ header {
   .detail-container {
     flex-direction: row;
   }
+  /* .saved-list {
+    flex-direction: row;
+  } */
 }
 
 @media (min-width: 1440px) {
@@ -233,4 +241,8 @@ header {
     width: 400px;
     height: 300px;
   }
+
+  /* .saved-list {
+    flex-direction: row;
+  } */
 }

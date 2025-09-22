@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function CountryCard({ country }) {
+  console.log(country, "from card");
   const title = country?.name?.common || "Unknown";
   const flagUrl = country?.flags?.png || country?.flags?.svg || "";
   const population = country?.population ?? 0;
