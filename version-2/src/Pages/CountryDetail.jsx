@@ -5,13 +5,16 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
   // get the country's name from the URL
   const { countryName } = useParams();
 
+  // visit count state
+  const [countryView, setCountryView] = useState(0);
+
+  // below i am setting the usestate of the saved button to false so it can show a gray heart
+  const [saveBtn, setSaveBtn] = useState(false);
+
   // find the matching country object
   const country = countries.find(
     (countryObject) => countryObject.name.common === countryName
   );
-
-  // visit count state
-  const [countryView, setCountryView] = useState(0);
 
   // save button: store list of saved names in localStorage
   function clickHandler(nameToSave) {
@@ -19,11 +22,10 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
     if (savedCountries && savedCountries.push === undefined) {
       savedCountries = [savedCountries];
     }
-    // avoid duplicates (optional)
-    if (!savedCountries.includes(nameToSave)) {
-      savedCountries.push(nameToSave);
-    }
+
     localStorage.setItem("countryNames", JSON.stringify(savedCountries));
+
+    setSaveBtn(true); // once clicked, set to saved
   }
 
   // count views for this country
@@ -94,7 +96,7 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
                 onClick={() => clickHandler(country.name.common)}
                 className="save-btn"
               >
-                Save
+                {saveBtn ? "❤️" : "🩶"}
               </button>
             </div>
             <p>
