@@ -116,8 +116,8 @@ WHEN: each time a Country's country Detail page opens (on page visit)
 WHERE: CountryDetail
 HOW:
 Step 1: create a useState for the viewCOunt When the page loads use useEffect to look at the countryViewCounts on the local storage (if it's blank then it will have an empty object)
-Step 2: useEffect t0:
-   1. retreave the current viewCOunt 
+Step 2: use useEffect to:
+   1. retreave the current viewCount 
       2. then add one 
    3. then store the new number in local storage
 Step 3:update the value of the viewCount using setViewCount 

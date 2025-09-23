@@ -5,8 +5,14 @@ export default function CountryDetail({ getCountriesData, countries }) {
   // get this country's name from the URL parameter
   const countryName = useParams().countryName;
 
+  const country = countries.find((countryObject) => {
+    return countryObject.name.common === countryName;
+  });
   // setting the useState for visitcount
   const [countryView, setCountryView] = useState(0);
+
+  // active use state for the save button heart
+  // const [activeSaveBtn, setactiveSaveBtn] = useState(" ");
 
   function clickHandler(countryName) {
     // Get the saved countries list from localStorage with exsisting names or without any exisisting names.
@@ -17,25 +23,39 @@ export default function CountryDetail({ getCountriesData, countries }) {
 
     // Save the updated array back into localStorage
     localStorage.setItem("countryNames", JSON.stringify(savedCountries));
-
-    useEffect(() => {
-      // this is going to count the number of times the country is visited.
-
-      const viewCountsFromLocalStorage =
-        JSON.parse(localStorage.getItem("countryViews")) || {};
-      const newViewCounts = (viewCountsLocalStorage[country] || 0) + 1;
-      viewCountsLocalStorage[country] = newCount;
-      localStorage.setItem(
-        "countryViews",
-        JSON.stringify(viewCountsFromLocalStorage)
-      );
-      setCountryView(newCount);
-    });
   }
+  useEffect(() => {
+    if (!country) return; // do nothing if not found yet
 
-  const country = countries.find((countryObject) => {
-    return countryObject.name.common === countryName;
-  });
+    // get the "countryViews" string from localStorage
+    const countryViewLocal = localStorage.getItem("countryViews");
+
+    // if nothing is there, start with an empty object
+    let savedViewCounts;
+    if (countryViewLocal) {
+      savedViewCounts = JSON.parse(countryViewLocal);
+    } else {
+      savedViewCounts = {};
+    }
+
+    // 1. look up this country’s current count (or 0 if missing)
+    let current = 0;
+    if (savedViewCounts[country.name.common]) {
+      current = savedViewCounts[country.name.common];
+    }
+
+    // 2. add one
+    const newViewCount = current + 1;
+
+    // 3. update the object with the new count
+    savedViewCounts[country.name.common] = newViewCount;
+
+    // 4. save it back to localStorage
+    localStorage.setItem("countryViews", JSON.stringify(savedViewCounts));
+
+    // step 3: update React state
+    setViewCount(newViewCount);
+  }, [country]);
 
   return (
     <>
