@@ -1,61 +1,73 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-export default function CountryDetail({ getCountriesData, countries }) {
-  // get this country's name from the URL parameter
-  const countryName = useParams().countryName;
+export default function CountryDetail({ getCountriesData, countries = [] }) {
+  // get the country's name from the URL
+  const { countryName } = useParams();
 
-  const country = countries.find((countryObject) => {
-    return countryObject.name.common === countryName;
-  });
-  // setting the useState for visitcount
+  // find the matching country object
+  const country = countries.find(
+    (countryObject) => countryObject.name.common === countryName
+  );
+
+  // visit count state
   const [countryView, setCountryView] = useState(0);
 
-  // active use state for the save button heart
-  // const [activeSaveBtn, setactiveSaveBtn] = useState(" ");
-
-  function clickHandler(countryName) {
-    // Get the saved countries list from localStorage with exsisting names or without any exisisting names.
+  // save button: store list of saved names in localStorage
+  function clickHandler(nameToSave) {
     let savedCountries = JSON.parse(localStorage.getItem("countryNames")) || [];
-
-    // Add the new country to the array of strings using the key countryName
-    savedCountries.push(countryName);
-
-    // Save the updated array back into localStorage
+    if (savedCountries && savedCountries.push === undefined) {
+      savedCountries = [savedCountries];
+    }
+    // avoid duplicates (optional)
+    if (!savedCountries.includes(nameToSave)) {
+      savedCountries.push(nameToSave);
+    }
     localStorage.setItem("countryNames", JSON.stringify(savedCountries));
   }
+
+  // count views for this country
+
   useEffect(() => {
-    if (!country) return; // do nothing if not found yet
+    if (!country) return;
 
-    // get the "countryViews" string from localStorage
-    const countryViewLocal = localStorage.getItem("countryViews");
+    // this looks inside localStorage for the key "countryViews".
+    // if it exists, it comes back as a string with the country name and number
+    const countyViewInitial = localStorage.getItem("countryViews");
+    // this is an if conditional that says if the countyViewInitial exsists then turn that string into an object
+    // if nothing was saved then have it show as null.
+    let savedViewCounts = countyViewInitial
+      ? JSON.parse(countyViewInitial)
+      : {};
 
-    // if nothing is there, start with an empty object
-    let savedViewCounts;
-    if (countryViewLocal) {
-      savedViewCounts = JSON.parse(countryViewLocal);
-    } else {
+    //  it’s not really an object, reset it to an empty object
+    if (!savedViewCounts) {
       savedViewCounts = {};
     }
 
-    // 1. look up this country’s current count (or 0 if missing)
-    let current = 0;
-    if (savedViewCounts[country.name.common]) {
-      current = savedViewCounts[country.name.common];
-    }
+    // here i am storing the initital view count of 0 to the variable current
+    // then i am setting up the variable newViewCount and storing the currentViews and adding one to it (on website load due to useeffect)
+    const currentViews = savedViewCounts[country.name.common] || 0;
+    const newViewCount = currentViews + 1;
 
-    // 2. add one
-    const newViewCount = current + 1;
-
-    // 3. update the object with the new count
+    // below i am updating the viewcount
     savedViewCounts[country.name.common] = newViewCount;
-
-    // 4. save it back to localStorage
     localStorage.setItem("countryViews", JSON.stringify(savedViewCounts));
 
-    // step 3: update React state
-    setViewCount(newViewCount);
+    setCountryView(newViewCount);
   }, [country]);
+
+  // Below is fixing the flag bug, without it my page won't render
+  if (!country) {
+    return (
+      <main className="detail-page">
+        <p>Loading…</p>
+        <Link className="back-btn" to="/">
+          ← Back
+        </Link>
+      </main>
+    );
+  }
 
   return (
     <>
