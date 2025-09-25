@@ -149,7 +149,7 @@ REQUEST BODY (if applicable): [
   }
 ]
   
-  RESPONSE DATA TYPE: JSON array of objects
+  RESPONSE DATA TYPE: JSON string 
   RESPONSE: [
   {
     "country_name": "Japan"
