@@ -16,13 +16,35 @@ export default function SavedCountries({ countries }) {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  // Step 1: Declare a new function called storeUserData() which should send a POST request to the APT to the /add-one-user endpoint
+  // Step 2: Call the storeUserData() function on submit
 
+  const storeUserData = async () => {
+    // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
+    // but hen we need to make a POST request, we have to pass in a second parameter: an object
+    await fetch("https://backend-answer-keys.onrender.com/add-one-user", {
+      method: "POST", // we need to say we're sending a POST request because by default it's always a GET request
+      headers: {
+        // the headers is where we put metadata about our request, includeing the data type that we pass in the body
+        // in this case we are saying we're  passing in JSON data in the body
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.fullName,
+        email: formData.email,
+        country_name: formData.country,
+        bio: formData.bio,
+      }),
+    });
+    // we aren't gonna do anything with the response so we won't write any further code
+    // however if you do want to do something with the response (like when you will update teh counter ) you need to do what we did with teh fetch call (get the information), turn it into JSON and then it can be used.
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData, "form was submitted");
 
     // storing the form data into local storage:
-    localStorage.setItem("profile", JSON.stringify(formData));
+    storeUserData(formData);
 
     setUserInfo(formData);
     // reset the form to empty state

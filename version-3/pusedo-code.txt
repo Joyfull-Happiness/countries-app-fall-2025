@@ -119,8 +119,8 @@ WHEN: when user clicks save button
 WHERE: country detail page 
 
 HOW: 
-Step 1: _______
-Step 2: _______
+Step 1: Declare a new function called storeUserData() which should send a POST request to the APT to the /add-one-user endpoint 
+Step 2: Call the storeUserData() function on submit 
 Step 3: _______
 Add more steps as needed! 
 
