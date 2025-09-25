@@ -67,17 +67,9 @@ WHAT...
   TYPE OF HTTP REQUEST (GET OR POST): GET
   API ENDPOINT: /get-newest-user
 
-  REQUEST BODY DATA TYPE (if applicable): array of objects
+  REQUEST BODY DATA TYPE (if applicable): N/A
   REQUEST BODY (if applicable): 
-  [
-  {
-    "user_id": 42,
-    "name": "Jay Zee",
-    "country_name": "USA",
-    "email": "jayZee@example.com",
-    "bio": "rapper"
-  }
-]
+  N/A
   
   RESPONSE DATA TYPE:  array of objects 
   RESPONSE: [
@@ -94,9 +86,10 @@ WHEN: On page load.
 ***WHERE: in the savedCountries page 
 
 HOW: 
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Step 1: Make a function called getNewestUser () that will get the form data from the API by sending a get request to the /get-newest-user-endpoint 
+Step 2: After you get the form data. Save the form data in a state variable using useState() this way you can render what's in teh state variable into the JSX in step 4 n
+Step 3: Call the getNewestUser() function on page load in the useEffect() 
+Step 4: Cnoditionally render teh user's name in the return stement (in JSX) if the user's name exsists 
 Add more steps as needed! 
 
 ------------------------

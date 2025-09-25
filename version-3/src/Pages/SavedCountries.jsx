@@ -16,6 +16,7 @@ export default function SavedCountries({ countries }) {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData, "form was submitted");
@@ -27,31 +28,31 @@ export default function SavedCountries({ countries }) {
     // reset the form to empty state
     setFormData(emptyFormState);
   };
+
+  // Step 1: Make a function called getNewestUser() that will get the form data from the API by sending a GET request to the /get-newest-user-endpoint
+
+  // Step 2: Save the form data in a state variable using useState()
+
+  const getNewestUser = async () => {
+    // declare a variable that will hold the response from the GET request to /get-newest-user
+    const response = await fetch(
+      "https://backend-answer-keys.onrender.com/get-newest-user"
+    );
+    // turn the response into json format
+    const data = await response.json();
+    console.log(data);
+    const newestUserFromAPI = data[0];
+    // save the data in state
+    setUserInfo({
+      fullName: newestUserFromAPI.name,
+      email: newestUserFromAPI.email,
+      country: newestUserFromAPI.country,
+      bio: newestUserFromAPI.bio,
+    });
+  };
   // run this useEffect once the page loads
   useEffect(() => {
-    if (localStorage.getItem("profile")) {
-      // this is destringing the local storage item profile and saving it in the variable profileDeStringified
-      let profileDeStringified = JSON.parse(localStorage.getItem("profile"));
-
-      // this is setting the userInfo to the variable profileDeStringified so the profile information is no longer a string and is now an array.
-      setUserInfo(profileDeStringified);
-    }
-
-    // gather the api data through {countries} in the useState that is being passed into SavedCountries
-    // then you're matching it to the local data (names of countries) that are being passed through. conditional?
-    // then you're saving the conditional results into a variable
-    // pass that variable in as a java script method and use the .map method to loop through the array
-    // display the card of the country
-
-    // Load saved countries from localStorage and update state
-    const countriesLocalData = localStorage.getItem("countryNames");
-
-    if (countriesLocalData) {
-      const savedLocalCountries = JSON.parse(countriesLocalData);
-
-      console.log("countriesLocalData", countriesLocalData);
-      setSavedCountries(savedLocalCountries); // Set the state to saved countries
-    }
+    getNewestUser();
   }, []);
 
   const filteredItems = countries.filter((item) =>
