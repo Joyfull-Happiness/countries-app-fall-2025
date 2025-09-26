@@ -27,19 +27,14 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        country_name: formData.country,
+        country_name: country.name.common,
       }),
     });
   };
   // Step 2: Call the saveOneCountry() function on click when the save country heart button is clicked (useState)
   // save button: store list of saved names in localStorage
-  function clickHandler(nameToSave) {
-    let savedCountries = JSON.parse(localStorage.getItem("countryNames")) || [];
-    if (savedCountries && savedCountries.push === undefined) {
-      savedCountries = [savedCountries];
-    }
-
-    localStorage.setItem("countryNames", JSON.stringify(savedCountries));
+  function clickHandler() {
+    storeUserData();
 
     setSaveBtn(true); // once clicked, set to saved
   }
