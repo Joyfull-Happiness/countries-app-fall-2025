@@ -55,8 +55,8 @@ WHEN: onClick when the user clicks submit
 WHERE: in the handle submit function on the saved countries page and will send it to the server side infrastructure (postman)
 
 HOW: 
-Step 1: _______
-Step 2: _______
+Step 1: Declare a new function called storeUserData() which should send a POST request to the APT to the /add-one-user endpoint 
+Step 2: Call the storeUserData() function on submit 
 Step 3: _______
 Add more steps as needed! 
 
@@ -90,7 +90,6 @@ Step 1: Make a function called getNewestUser () that will get the form data from
 Step 2: After you get the form data. Save the form data in a state variable using useState() this way you can render what's in teh state variable into the JSX in step 4 n
 Step 3: Call the getNewestUser() function on page load in the useEffect() 
 Step 4: Cnoditionally render teh user's name in the return stement (in JSX) if the user's name exsists 
-Add more steps as needed! 
 
 ------------------------
 📊 SAVED COUNTRIES DATA 
@@ -119,8 +118,9 @@ WHEN: when user clicks save button
 WHERE: country detail page 
 
 HOW: 
-Step 1: Declare a new function called storeUserData() which should send a POST request to the APT to the /add-one-user endpoint 
-Step 2: Call the storeUserData() function on submit 
+Step 1: Declare a new function called saveOneCountry() which should send a POST request to the POST request to the https://backend-answer-keys.onrender.com/save-one-country (save-one-conuntry is the end point ) on the country details page 
+
+Step 2: Call the saveOneCountry() function on click when the save country heart button is clicked (useState) 
 Step 3: _______
 Add more steps as needed! 
 
@@ -132,15 +132,8 @@ WHAT...
   TYPE OF HTTP REQUEST (GET OR POST): GET
   API ENDPOINT: /get-all-saved-countries
 
-  REQUEST BODY DATA TYPE (if applicable): JSON array of objects 
-REQUEST BODY (if applicable): [
-  {
-    "country_name": "Japan"
-  },
-  {
-    "country_name": "Germany"
-  }
-]
+  REQUEST BODY DATA TYPE (if applicable): N/A
+REQUEST BODY (if applicable): N/A
   
   RESPONSE DATA TYPE: JSON string 
   RESPONSE: [
@@ -157,10 +150,10 @@ WHEN: on page load for the saved countries page
 WHERE: saved countries page 
 
 HOW: 
-Step 1: _______
-Step 2: _______
-Step 3: _______
-Add more steps as needed! 
+Step 1: Make a function called getAllSavedCountries () that will get the saved countries data from the API by sending a get request to the /get-all-saved-countries endpoint 
+Step 2: After you get the saved countries data. Save the saved countries data in a state variable using useState() this way you can render what's in the state variable into the JSX in step 4 
+Step 3: Call the getAllSavedCountries() function on page load in the useEffect() 
+Step 4: Conditionally render the saved countries cards if the saved countries are saved  
 
 ------------------------
 📊 COUNTRY COUNTS DATA 
@@ -192,7 +185,10 @@ WHEN: on page load for the country hosted on the country details page
 WHERE: country details page 
 
 HOW: 
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Storing the counter POST: 
+Step 1: Declare a new function called updateOneCountryCounter() which should send a POST request to the API end point /update-one-country-count  
+step 2: save the count in a use state variable 
+
+Step 2: Call the savedCounter() function on page load (useEffect) 
+Step 3: render the count using a state variable in jsx 
 Add more steps as needed! 

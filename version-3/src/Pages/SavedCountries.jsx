@@ -37,7 +37,7 @@ export default function SavedCountries({ countries }) {
       }),
     });
     // we aren't gonna do anything with the response so we won't write any further code
-    // however if you do want to do something with the response (like when you will update teh counter ) you need to do what we did with teh fetch call (get the information), turn it into JSON and then it can be used.
+    // however if you do want to do something with the response (like when you will update the counter ) you need to do what we did with the fetch call (get the information), turn it into JSON and then it can be used.
   };
   const handleSubmit = (e) => {
     e.preventDefault();

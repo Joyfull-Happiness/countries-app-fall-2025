@@ -15,7 +15,23 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
   const country = countries.find(
     (countryObject) => countryObject.name.common === countryName
   );
-
+  // Step 1: Declare a new function called saveOneCountry() which should send a POST request to the POST request to the https://backend-answer-keys.onrender.com/save-one-country (save-one-conuntry is the end point ) on the country details page
+  const storeUserData = async () => {
+    // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
+    // but hen we need to make a POST request, we have to pass in a second parameter: an object
+    await fetch("https://backend-answer-keys.onrender.com/save-one-country", {
+      method: "POST", // we need to say we're sending a POST request because by default it's always a GET request
+      headers: {
+        // the headers is where we put metadata about our request, includeing the data type that we pass in the body
+        // in this case we are saying we're  passing in JSON data in the body
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        country_name: formData.country,
+      }),
+    });
+  };
+  // Step 2: Call the saveOneCountry() function on click when the save country heart button is clicked (useState)
   // save button: store list of saved names in localStorage
   function clickHandler(nameToSave) {
     let savedCountries = JSON.parse(localStorage.getItem("countryNames")) || [];
