@@ -76,6 +76,23 @@ export default function SavedCountries({ countries }) {
   useEffect(() => {
     getNewestUser();
   }, []);
+  // .includes is considered a loop
+
+  const getAllSavedCountries = async () => {
+    // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
+    // but hen we need to make a POST request, we have to pass in a second parameter: an object
+    await fetch("https://backend-answer-keys.onrender.com/save-one-country", {
+      method: "GET", // we need to say we're sending a POST request because by default it's always a GET request
+      headers: {
+        // the headers is where we put metadata about our request, includeing the data type that we pass in the body
+        // in this case we are saying we're  passing in JSON data in the body
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        country_name: country.name.common,
+      }),
+    });
+  };
 
   const filteredItems = countries.filter((item) =>
     savedCountries.includes(item.name.common)
