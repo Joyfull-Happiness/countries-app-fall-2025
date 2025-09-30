@@ -72,34 +72,31 @@ export default function SavedCountries({ countries }) {
       bio: newestUserFromAPI.bio,
     });
   };
-  // run this useEffect once the page loads
-  useEffect(() => {
-    getNewestUser();
-  }, []);
+
   // .includes is considered a loop
 
   const getAllSavedCountries = async () => {
-    // declare a variable that will hold the response from the GET request to /get-newest-user
+    // declare a variable that will hold the response from the GET request to API endpoint /get-all-saved-countries
     const response = await fetch(
       "https://backend-answer-keys.onrender.com/get-all-saved-countries"
     );
-    // turn the response into json format
+    // we're taking the raw data from the API and converting it into a js object
     const savedCountriesData = await response.json();
-    console.log(savedCountriesData);
-    const savedCountriesList = savedCountriesData[0];
-    // save the data in state
-    setSavedCountries({
-      country_name: savedCountriesData.country_name,
-    });
+    console.log("savedCountriesData:", savedCountriesData);
+    // we are setting the savedcountries state and saving all of the data as an array of objects (it's already )
+    setSavedCountries(savedCountriesData);
   };
 
-  const filteredItems = countries.filter((item) => {
-    console.log(" savedCountries:", savedCountries);
-
-    return savedCountries.includes(item.name.common);
+  const savedCountryItems = savedCountries.map((savedName) => {
+    return countries.find((item) => savedName === item.name.common);
   });
 
-  console.log("Filtered Items", filteredItems);
+  console.log("savedCountryItems", savedCountryItems);
+  // run this useEffect once the page loads
+  useEffect(() => {
+    getNewestUser();
+    getAllSavedCountries();
+  }, []);
 
   return (
     <>
@@ -107,8 +104,8 @@ export default function SavedCountries({ countries }) {
         <section className="section">
           <h2>My Saved Countries</h2>
           <div className="saved-list">
-            {filteredItems.map((savedCountry, key) => (
-              <CountryCard key={key} country={savedCountry} />
+            {savedCountries.map((countries, key) => (
+              <CountryCard key={key} country={countries} />
             ))}
           </div>
         </section>
