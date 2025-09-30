@@ -68,7 +68,7 @@ export default function SavedCountries({ countries }) {
     setUserInfo({
       fullName: newestUserFromAPI.name,
       email: newestUserFromAPI.email,
-      country: newestUserFromAPI.country,
+      country: newestUserFromAPI.country_name,
       bio: newestUserFromAPI.bio,
     });
   };
@@ -82,7 +82,6 @@ export default function SavedCountries({ countries }) {
     );
     // we're taking the raw data from the API and converting it into a js object
     const savedCountriesData = await response.json();
-    console.log("savedCountriesData:", savedCountriesData);
     // we are setting the savedcountries state and saving all of the data as an array of objects (it's already )
     setSavedCountries(savedCountriesData);
   };

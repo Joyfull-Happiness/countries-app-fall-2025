@@ -41,33 +41,30 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
 
   // count views for this country
 
+  const updateOneCountryCounter = async () => {
+    // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
+    // but hen we need to make a POST request, we have to pass in a second parameter: an object
+    await fetch(
+      "https://backend-answer-keys.onrender.com//update-one-country-count",
+      {
+        method: "POST", // we need to say we're sending a POST request because by default it's always a GET request
+        headers: {
+          // the headers is where we put metadata about our request, includeing the data type that we pass in the body
+          // in this case we are saying we're  passing in JSON data in the body
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ country_name: country.name.common }),
+      }
+    );
+    // the below line is creating the variable data and converting it back into JS while calling the setCountryView and passing thorugh the data count
+    const dataCounter = await response.json();
+    setCountryView(dataCounter.count);
+  };
+
   useEffect(() => {
-    if (!country) return;
-
-    // this looks inside localStorage for the key "countryViews".
-    // if it exists, it comes back as a string with the country name and number
-    const countyViewInitial = localStorage.getItem("countryViews");
-    // this is an if conditional that says if the countyViewInitial exsists then turn that string into an object
-    // if nothing was saved then have it show as null.
-    let savedViewCounts = countyViewInitial
-      ? JSON.parse(countyViewInitial)
-      : {};
-
-    //  it’s not really an object, reset it to an empty object
-    if (!savedViewCounts) {
-      savedViewCounts = {};
+    if (!country) {
+      updateOneCountryCounter();
     }
-
-    // here i am storing the initital view count of 0 to the variable current
-    // then i am setting up the variable newViewCount and storing the currentViews and adding one to it (on website load due to useeffect)
-    const currentViews = savedViewCounts[country.name.common] || 0;
-    const newViewCount = currentViews + 1;
-
-    // below i am updating the viewcount
-    savedViewCounts[country.name.common] = newViewCount;
-    localStorage.setItem("countryViews", JSON.stringify(savedViewCounts));
-
-    setCountryView(newViewCount);
   }, [country]);
 
   // Below is fixing the flag bug, without it my page won't render
