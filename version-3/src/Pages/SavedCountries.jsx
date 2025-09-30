@@ -88,7 +88,9 @@ export default function SavedCountries({ countries }) {
   };
 
   const savedCountryItems = savedCountries.map((savedName) => {
-    return countries.find((item) => savedName === item.name.common);
+    return countries.find(
+      (item) => item.name.common === savedName.country_name
+    );
   });
 
   console.log("savedCountryItems", savedCountryItems);
@@ -104,8 +106,8 @@ export default function SavedCountries({ countries }) {
         <section className="section">
           <h2>My Saved Countries</h2>
           <div className="saved-list">
-            {savedCountries.map((countries, key) => (
-              <CountryCard key={key} country={countries} />
+            {savedCountryItems.map((country, key) => (
+              <CountryCard key={key} country={country} />
             ))}
           </div>
         </section>

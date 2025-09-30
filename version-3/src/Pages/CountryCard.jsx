@@ -7,10 +7,12 @@ export default function CountryCard({ country }) {
   const flagUrl = country?.flags?.png || country?.flags?.svg || "";
   const population = country?.population ?? 0;
   const region = country?.region || "—";
+
+  let capital = country.capital;
+  console.log("capital:", capital);
   /*this is displaying different ways of gathering the countries capitol as some countries have multiple capitols
 it's saying if hte capitol is an array, string or there is nothing display them
   */
-  const capital = country.capital;
 
   return (
     <Link className="all-links" to={`/country-detail/${country.name.common}`}>
