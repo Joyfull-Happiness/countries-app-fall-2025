@@ -17,12 +17,13 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
   );
 
   // save button: store list of saved names in localStorage
+  // add the name of the country to the array.
   function clickHandler(nameToSave) {
     let savedCountries = JSON.parse(localStorage.getItem("countryNames")) || [];
-    if (savedCountries && savedCountries.push === undefined) {
-      savedCountries = [savedCountries];
-    }
+    // Add the new country to the array of strings using the key countryName
+    savedCountries.push(countryName);
 
+    // Save the updated array back into localStorage
     localStorage.setItem("countryNames", JSON.stringify(savedCountries));
 
     setSaveBtn(true); // once clicked, set to saved
