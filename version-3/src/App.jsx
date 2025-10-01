@@ -21,7 +21,11 @@ function App() {
       console.log("Error: " + error.message);
     }
   };
-
+  // Here i am sorting the countries by the "common" name in alphabetical order
+  // becuase we are sorting through the countries array this becomes are main variable needed for the .sort method to run (can't be done will all methods, .sort is one othe exceptions (the technical term for this is muttation meaning the original array is changed))
+  const sortedCountries = countries.sort((firstCountry, secondCountry) =>
+    firstCountry.name.common > secondCountry.name.common ? 1 : -1
+  );
   // we run useEffect when the page loads
   // it has an empty dependency array, meaning no dependencies, but we still have to include because it's required useEffect syntax
 

@@ -44,29 +44,28 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
   const updateOneCountryCounter = async () => {
     // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
     // but hen we need to make a POST request, we have to pass in a second parameter: an object
-    console.log("country:", country);
+
     const response = await fetch(
       "https://backend-answer-keys.onrender.com/update-one-country-count",
       {
         method: "POST", // we need to say we're sending a POST request because by default it's always a GET request
         headers: {
-          // the headers is where we put metadata about our request, includeing the data type that we pass in the body
-          // in this case we are saying we're  passing in JSON data in the body
+          // the header is where we put metadata about our request, including the data type that we pass in the body
+
           "Content-Type": "application/json",
         },
+        // in this case we are saying we're  passing in JSON data of country_name in the body and stringifying it
         body: JSON.stringify({ country_name: country.name.common }),
       }
     );
 
-    // wer're taking the data from the response and turning it into useable js and passing in th count property from the data into the CountryView
+    // wer're taking the data from the response and turning it into useable js (parsing the string) and passing in the count property from the data into the CountryView
     const dataCounter = await response.json();
     setCountryView(dataCounter.count);
   };
 
   useEffect(() => {
-    console.log("countryLine67:", country);
-    console.log("!countryLine67:", !country);
-
+    // if there is a country call on the updateOneCountryCounter function the run on page load
     if (country) {
       updateOneCountryCounter();
     }

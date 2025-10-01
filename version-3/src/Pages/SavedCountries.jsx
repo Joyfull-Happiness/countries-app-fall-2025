@@ -81,10 +81,14 @@ export default function SavedCountries({ countries }) {
       "https://backend-answer-keys.onrender.com/get-all-saved-countries"
     );
     // we're taking the raw data from the API and converting it into a js object
+    // the response.json() turns the response object into the data we can use in out JS code
     const savedCountriesData = await response.json();
     // we are setting the savedcountries state and saving all of the data as an array of objects (it's already )
     setSavedCountries(savedCountriesData);
   };
+
+  // i'm creating the variable savedCountryItems to map through savedCountries (passing through each country name that is saved in SavedName) the return the countries that are found using .find
+  //using an arrow function we are passing through an item and checking if that item's common name (from the countries list passed through in the .find) matches the savedNames that we passed through in the .map.
 
   const savedCountryItems = savedCountries.map((savedName) => {
     return countries.find(
@@ -93,7 +97,7 @@ export default function SavedCountries({ countries }) {
   });
 
   console.log("savedCountryItems", savedCountryItems);
-  // run this useEffect once the page loads
+  // run this useEffect once the page loads and call the fucntions getNewestUser and getAllSavedCountries.
   useEffect(() => {
     getNewestUser();
     getAllSavedCountries();
