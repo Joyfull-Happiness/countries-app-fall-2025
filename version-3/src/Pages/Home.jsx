@@ -40,20 +40,18 @@ export default function Home({ countries }) {
     <>
       {/* Search Bar */}
       <div className="search-container">
-        <div className="search-input-wrapper">
-          <input
-            type="text"
-            placeholder="Search for a country..."
-            value={searchBar}
-            onChange={(e) => setSearchBar(e.target.value)}
-            className="search-input"
-          />
-        </div>
-
+        <input
+          type="text"
+          placeholder="Search for a country..."
+          value={searchBar}
+          onChange={(e) => setSearchBar(e.target.value)}
+          className="search-input"
+        />
+      </div>
+      <div className="region-filter">
         <select
           value={selectedRegionDropDown}
           onChange={(e) => setSelectedRegionDropDown(e.target.value)}
-          className="region-filter"
         >
           <option value="all">Filter by Region</option>
           <option value="Africa">Africa</option>
@@ -64,6 +62,7 @@ export default function Home({ countries }) {
           <option value="Oceania">Oceania</option>
         </select>
       </div>
+
       <div className="card-container">
         {/* Below i am looping through the sortedCountries array and displaying a CountryCard for each one */}
         {filteredCountries.map((country) => (
