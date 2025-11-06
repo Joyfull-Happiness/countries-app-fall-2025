@@ -1,0 +1,124 @@
+-------------------------------------
+:brain: VERSION 2 PSEUDO-CODE WORKSHEET
+-------------------------------------
+This is our WHAT, WHEN, WHERE, HOW framework for working with data:
+1. WHAT data should we store & retrieve?
+   List the key/value pair, data type, example value.
+2. WHEN should we store & retrieve the data?
+   What event or user action is the trigger, such as clicking a button, submitting a form, or loading a page?
+3. WHERE does this happen in the code?
+   What component, page or function?
+4. HOW do we accomplish this?
+   What steps do we need to take?
+   Do we need to...
+    - render anything in JSX?
+    - make any functions? If so, when would we call those functions?
+    - use any useState or useEffect hooks?
+    - set or get an item from localStorage?
+  Remember: This is pseudo-code. Don't write code yet — just outline the actions in plain language.
+:sparkles: YOUR TASK: Fill in the answers to each WHAT/WHEN/WHERE/HOW question below for the 3 pieces of data.
+------------------------
+:bar_chart: FORM DATA
+------------------------
+WHAT data should we store & retrieve?
+KEY: "user"
+VALUE: (the data from the form that the user submits) fullname, email, country, bio 
+VALUE DATA TYPE: object with key values 
+EXAMPLE VALUE: 
+{
+   name: "bob smith"
+   email: bobsmith@gmail.com
+   country: Argentina 
+   bio: loves fish 
+}
+------------------------
+:large_orange_diamond: 
+STORING FORM DATA
+------------------------
+WHEN: when user hits submit 
+WHERE: saved countries page
+HOW:
+Step 1: create a handle submit function that includes saving it into localStorage 
+Step 2: We add the handleSubmit as an OnSubmit prop ont he form in JSX- make sure that the function is being called when the user clicks submit
+Step 3: _______
+Add more steps as needed!
+------------------------
+:large_orange_diamond: RETRIEVING FORM DATA 
+when you use ***getItem
+------------------------
+WHEN: When the user loads the saved countries page
+WHERE: Saved countries page above the form
+HOW:
+Step 1: We need to make a useEffect that retrieves the Form data on page load and saves it in state 
+Step 2: We render the state variable in the JSX  as a heading that says "Welcom [user]"
+Step 3: _______
+Add more steps as needed!
+------------------------
+:bar_chart: SAVED COUNTRIES DATA
+------------------------
+WHAT data should we store & retrieve?
+KEY: "savedCountries"
+VALUE: the page will have an array of saved country names or the value of the saved country
+VALUE DATA TYPE: array of strings 
+EXAMPLE VALUE: [
+Finland, Jamaica, USA
+]
+
+------------------------
+:large_orange_diamond: STORING SAVED COUNTRIES DATA
+------------------------
+WHEN: when a user clicks the save country button on the country details page 
+WHERE: this will happen on the country details page on the detail-countryInfo child of the detail-container 
+HOW:
+Step 1: on save the code will look at the "savedCountries" list on local storage   
+Step 2: then use an if conditional: if the list is empty and the exsisting country is not there then add to the list as an object else don't add 
+Step 3: then you have to convert the info into stringified information and store it locally to the JSON list 
+
+_______Below is the class notes______
+Step 1: We need to attach an onClick handler to the Save button on the COuntryDetail page  
+Step 2: When the user clicks on teh Save button call teh handleClock function 
+Step 3: the handleClick function needs to save the country's name in localStorage  
+Step 4: 
+The handleClick function will first get the array of saved countries from local Storage. 
+If the country is already saved, then there is no need to save the country. If the country is not saved yet, then add the country's name to the array of savedCountries and store that value in localStorage.
+
+------------------------
+:large_orange_diamond: RETRIEVING SAVED COUNTRIES DATA
+------------------------
+WHEN: when teh user clicks on the saved countries page using useEffect
+WHERE: savedcountries using the info from localStorage 
+HOW:
+Step 1: using useEffect we can run the savedcountries information when the savedCountries page loads 
+Step 2: The coputer has to then get the information of the saved conutries from the local storage and display it back to the user 
+Step 3: but the list of saved countries into a state variable 
+Add more steps as needed!
+
+_______Below is the class notes______
+Step 1: Make a useEffect that runs on page load it will.... 
+Step 2: Get the array of savedCountries from localStorage 
+Step 3: Store it in a state variable  
+Step 4: Render the state variable in JSX as countryCards.
+------------------------
+:bar_chart: COUNTRY COUNTS DATA
+------------------------
+WHAT data should we store & retrieve?
+KEY: the countries name 
+VALUE: (the variable that holds the number) country's viewCount as a Numberevery
+VALUE DATA TYPE: number 
+EXAMPLE VALUE:
+  5
+
+------------------------
+:large_orange_diamond: STORING & RETRIEVING COUNTRY COUNTS DATA
+------------------------
+NOTE: We combine storing & retrieving country counts data into one section because they always happen together. Each time we look up a country’s view count, we also need to increase it and save the new total.
+WHEN: each time a Country's country Detail page opens (on page visit) 
+WHERE: CountryDetail
+HOW:
+Step 1: create a useState for the viewCOunt When the page loads use useEffect to look at the countryViewCounts on the local storage (if it's blank then it will have an empty object)
+Step 2: use useEffect to:
+   1. retreave the current viewCount 
+      2. then add one 
+   3. then store the new number in local storage
+Step 3:update the value of the viewCount using setViewCount 
+Step 4: show it back to the user  by rendering it in the JSX
