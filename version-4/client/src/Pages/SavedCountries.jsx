@@ -22,7 +22,7 @@ export default function SavedCountries({ countries }) {
   const storeUserData = async () => {
     // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
     // but hen we need to make a POST request, we have to pass in a second parameter: an object
-    await fetch("https://backend-answer-keys.onrender.com/add-one-user", {
+    await fetch("/api/add-one-user", {
       method: "POST", // we need to say we're sending a POST request because by default it's always a GET request
       headers: {
         // the headers is where we put metadata about our request, includeing the data type that we pass in the body
@@ -57,9 +57,7 @@ export default function SavedCountries({ countries }) {
 
   const getNewestUser = async () => {
     // declare a variable that will hold the response from the GET request to /get-newest-user
-    const response = await fetch(
-      "https://backend-answer-keys.onrender.com/get-newest-user"
-    );
+    const response = await fetch("/api/get-newest-user");
     // turn the response into json format
     const data = await response.json();
     console.log(data);
@@ -78,9 +76,7 @@ export default function SavedCountries({ countries }) {
 
   const getAllSavedCountries = async () => {
     // declare a variable that will hold the response from the GET request to API endpoint /get-all-saved-countries
-    const response = await fetch(
-      "https://backend-answer-keys.onrender.com/get-all-saved-countries"
-    );
+    const response = await fetch("/api/get-all-saved-countries");
     // we're taking the raw data from the API and converting it into a js object
     // the response.json() turns the response object into the data we can use in out JS code
     const savedCountriesData = await response.json();
