@@ -34,7 +34,162 @@ app.listen(port, () => {
 Helper Functions (Test them in postman)
 ----------------------------------*/
 
+//-------------------------------------
+//📊 USERS Helper Functions
+//-------------------------------------
+
+// 1. GET /get-newest-user
+async function getNewestUser() {
+  // db.query() lets us query the SQL database
+  // It takes in one parameter: a SQL query!
+  const data = await db.query(
+    "SELECT * FROM users ORDER BY user_id DESC LIMIT $1"
+  );
+  return data.rows; // we have to use dot notation to get value of the rows property from the data object
+}
+
+//2. GET /get-all-users
+async function getAllUsers() {
+  const data = await db.query("SELECT * FROM users ORDER BY id ASC");
+  return data.rows;
+}
+
+//3. POST /add-one-user
+async function addOneUser(name, country_name, email, bio) {
+  await db.query(
+    "INSERT INTO users (name, category, can_fly, lives_in) VALUES ($1, $2, $3, $4)",
+    [name, country_name, email, bio]
+  );
+}
+
+//-------------------------------------
+//📊 SAVED COUNTRIES
+//-------------------------------------
+
+//1. GET /get-all-saved-countries
+async function getAllSavedCountries() {
+  const data = await db.query("SELECT * FROM saved_countries ORDER BY id ASC");
+  return data.rows;
+}
+
+//2. POST /save-one-country
+async function saveOneCountry(country_name) {
+  await db.query(
+    "INSERT INTO saved_countries (country_name) VALUES ($1) ON CONFLICT (country_name) DO NOTHING ",
+    [country_name]
+  );
+}
+
+//3. POST /unsave-one-country
+async function unsaveOneCountry(country_name) {
+  await db.query("DELETE FROM saved_countries WHERE country_name = $1", [
+    country_name,
+  ]);
+}
+
+//-------------------------------------
+//📊 COUNTRY COUNTS
+//-------------------------------------
+
+//1. COUNTRY COUNTS
+async function updateOneCountryCount(country_name, count) {
+  const updatedCountryCount = await db.query(
+    "INSERT INTO country_counts (country_name, count) VALUES ($1, $2) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING count",
+    [country_name, count]
+  );
+  return updatedCountryCount.rows[0];
+}
+
 /*----------------------------------
 API Endpoints
 ----------------------------------*/
-// endpoint: /get-all-users
+
+//-------------------------------------
+//📊 USERS
+//-------------------------------------
+
+// 1. GET /get-newest-user
+
+app.get("/get-newest-user", async (req, res) => {
+  const newestUser = await getNewestUser();
+  res.json(newestUser);
+});
+
+//2. GET /get-all-users
+app.get("/get-all-users", async (req, res) => {
+  const allUsers = await getAllUsers();
+  res.json(allUsers);
+});
+
+//3. POST /add-one-user
+app.post("/add-one-user", async (req, res) => {
+  const { name, country_name, email, bio } = req.body;
+  await addOneUser(name, country_name, email, bio);
+  res.send(`Success! A User was added.`);
+});
+
+//-------------------------------------
+//📊 SAVED COUNTRIES
+//-------------------------------------
+
+//1. GET /get-all-saved-countries
+
+app.get("/get-all-saved-countries", async (req, res) => {
+  const allCountries = await getAllSavedCountries();
+  res.json(allCountries);
+});
+
+//2. POST /save-one-country
+app.post("/save-one-country", async (req, res) => {
+  const { country_name } = req.body;
+  await saveOneCountry(country_name);
+
+  res.send(`Success! ${country_name} was saved.`);
+});
+
+//3. POST /unsave-one-country
+app.post("/unsave-one-country", async (req, res) => {
+  const { country_name } = req.body;
+  await unsaveOneCountry(country_name);
+
+  res.send(`Success! ${country_name} was unsaved.`);
+});
+
+//-------------------------------------
+//📊 COUNTRY COUNTS
+//-------------------------------------
+updateOneCountryCount;
+//1. POST /update-one-country-count updateOneCountryCount
+
+app.post("/update-one-country-count", async (req, res) => {
+  const { country_name, count } = req.body;
+
+  await updateOneCountryCount(country_name, count);
+
+  res.send(`Success! ${country_name} was updated.`);
+});
+
+app.post("/update-one-animal-name-with-error-handling", async (req, res) => {
+  try {
+    // Possible errors:
+    // DONE: 400 Bad Request: what should we do when there's no body?
+    // 500 Internal Server Error: when a unique constraint is violated
+    // 404 Resource Not Found: using camelCase for the api endpoint
+    // 404 Resource Not Found: no existing animal was found with the given id
+
+    const { country_name, count } = req.body;
+
+    // check for missing required fields in the request body: id and newName
+    if (!country_name || !count) {
+      // return error message with 400 Bad Request status code, because the request was badly formed with wrong syntax.
+      // All 4xx status codes are client-side errors, which means the client sent a bad request
+      return res.status(400).send("Error: Missing required fields");
+    }
+
+    await updateOneAnimalName(country_name, count);
+
+    res.send(`Success! ${country_name}'s count was updated.`);
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
+});
