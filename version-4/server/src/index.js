@@ -1,3 +1,4 @@
+/*
 /* --------------------------------
 Server/API for Countries App Version 4
 
@@ -29,7 +30,6 @@ const port = 3000; // Setting which port to listen or receive requests
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}!`);
 });
-
 /*----------------------------------
 Helper Functions (Test them in postman)
 ----------------------------------*/
@@ -50,14 +50,14 @@ async function getNewestUser() {
 
 //2. GET /get-all-users
 async function getAllUsers() {
-  const data = await db.query("SELECT * FROM users ORDER BY id ASC");
+  const data = await db.query("SELECT * FROM users ORDER BY user_id ASC");
   return data.rows;
 }
 
 //3. POST /add-one-user
 async function addOneUser(name, country_name, email, bio) {
   await db.query(
-    "INSERT INTO users (name, category, can_fly, lives_in) VALUES ($1, $2, $3, $4)",
+    "INSERT INTO users (name, country_name, email, bio) VALUES ($1, $2, $3, $4)",
     [name, country_name, email, bio]
   );
 }
@@ -68,14 +68,16 @@ async function addOneUser(name, country_name, email, bio) {
 
 //1. GET /get-all-saved-countries
 async function getAllSavedCountries() {
-  const data = await db.query("SELECT * FROM saved_countries ORDER BY id ASC");
+  const data = await db.query(
+    "SELECT * FROM saved_countries ORDER BY user_id ASC"
+  );
   return data.rows;
 }
 
 //2. POST /save-one-country
 async function saveOneCountry(country_name) {
   await db.query(
-    "INSERT INTO saved_countries (country_name) VALUES ($1) ON CONFLICT (country_name) DO NOTHING ",
+    "SELECT * FROM saved_countries ORDER BY saved_country_id ASC",
     [country_name]
   );
 }
@@ -168,7 +170,7 @@ app.post("/update-one-country-count", async (req, res) => {
 
   res.send(`Success! ${country_name} was updated.`);
 });
-
+/* 
 app.post("/update-one-animal-name-with-error-handling", async (req, res) => {
   try {
     // Possible errors:
@@ -193,3 +195,4 @@ app.post("/update-one-animal-name-with-error-handling", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+*/
