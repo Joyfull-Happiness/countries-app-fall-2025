@@ -43,7 +43,7 @@ async function getNewestUser() {
   // db.query() lets us query the SQL database
   // It takes in one parameter: a SQL query!
   const data = await db.query(
-    "SELECT * FROM users ORDER BY user_id DESC LIMIT $1"
+    "SELECT * FROM users ORDER BY user_id DESC LIMIT 1"
   );
   return data.rows; // we have to use dot notation to get value of the rows property from the data object
 }
@@ -69,11 +69,11 @@ async function addOneUser(name, country_name, email, bio) {
 //1. GET /get-all-saved-countries
 async function getAllSavedCountries() {
   const data = await db.query(
-    "SELECT * FROM saved_countries ORDER BY user_id ASC"
+    "SELECT * FROM saved_countries ORDER BY saved_country_id ASC"
   );
+
   return data.rows;
 }
-
 //2. POST /save-one-country
 async function saveOneCountry(country_name) {
   await db.query(
@@ -88,9 +88,10 @@ async function unsaveOneCountry(country_name) {
     country_name,
   ]);
 }
+
 //4. POST /unsave-all-countries
-async function unsaveAllCountries(country_name) {
-  await db.query("DELETE FROM saved_countries", [country_name]);
+async function unsaveAllCountries() {
+  await db.query("DELETE FROM saved_countries");
 }
 
 //-------------------------------------
@@ -141,7 +142,10 @@ app.post("/add-one-user", async (req, res) => {
 //1. GET /get-all-saved-countries
 
 app.get("/get-all-saved-countries", async (req, res) => {
+  console.log("DATA_TEST:");
+
   const allCountries = await getAllSavedCountries();
+
   res.json(allCountries);
 });
 
@@ -163,9 +167,7 @@ app.post("/unsave-one-country", async (req, res) => {
 
 //4. POST /unsave-all-countries
 app.post("/unsave-all-countries", async (req, res) => {
-  //const { country_name } = req.body;
-  await unsaveAllCountries(country_name);
-
+  await unsaveAllCountries();
   res.send(`Success! All countries were unsaved.`);
 });
 //-------------------------------------
