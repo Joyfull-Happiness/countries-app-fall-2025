@@ -88,6 +88,10 @@ async function unsaveOneCountry(country_name) {
     country_name,
   ]);
 }
+//4. POST /unsave-all-countries
+async function unsaveAllCountries(country_name) {
+  await db.query("DELETE FROM saved_countries", [country_name]);
+}
 
 //-------------------------------------
 //📊 COUNTRY COUNTS
@@ -157,6 +161,13 @@ app.post("/unsave-one-country", async (req, res) => {
   res.send(`Success! ${country_name} was unsaved.`);
 });
 
+//4. POST /unsave-all-countries
+app.post("/unsave-all-countries", async (req, res) => {
+  //const { country_name } = req.body;
+  await unsaveAllCountries(country_name);
+
+  res.send(`Success! All countries were unsaved.`);
+});
 //-------------------------------------
 //📊 COUNTRY COUNTS
 //-------------------------------------
@@ -170,6 +181,7 @@ app.post("/update-one-country-count", async (req, res) => {
 
   res.send(`Success! ${country_name} was updated.`);
 });
+
 /* 
 app.post("/update-one-animal-name-with-error-handling", async (req, res) => {
   try {
