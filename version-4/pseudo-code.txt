@@ -115,10 +115,8 @@ ____________________________
 Description: Updates (or initializes) the view count for a country.  
 Your SQL command:
 
-"INSERT INTO country_counts (country_name, count) VALUES ($1, $2) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING count" 
+"INSERT INTO country_counts (country_name, count) VALUES ($1, 1) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING *" 
 
-41-42 an hour 
-("UPDATE animals SET name = $1 WHERE id = $2", [newName, id]);
 ____________________________
 
 

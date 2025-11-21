@@ -53,8 +53,12 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
         "Content-Type": "application/json",
       },
       // in this case we are saying we're  passing in JSON data of country_name in the body and stringifying it
-      body: JSON.stringify({ country_name: country.name.common }),
+      body: JSON.stringify({
+        country_name: country.name.common,
+      }),
     });
+
+    // console.log("response", response);
 
     // wer're taking the data from the response and turning it into useable js (parsing the string) and passing in the count property from the data into the CountryView
     const dataCounter = await response.json();
