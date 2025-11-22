@@ -15,28 +15,65 @@ export default function CountryDetail({ getCountriesData, countries = [] }) {
   const country = countries.find(
     (countryObject) => countryObject.name.common === countryName
   );
-  // Step 1: Declare a new function called saveOneCountry() which should send a POST request to the POST request to the https://backend-answer-keys.onrender.com/save-one-country (save-one-conuntry is the end point ) on the country details page
-  const saveOneCountry = async () => {
-    // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
-    // but hen we need to make a POST request, we have to pass in a second parameter: an object
-    await fetch("/api/save-one-country", {
-      method: "POST", // we need to say we're sending a POST request because by default it's always a GET request
-      headers: {
-        // the headers is where we put metadata about our request, includeing the data type that we pass in the body
-        // in this case we are saying we're  passing in JSON data in the body
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        country_name: country.name.common,
-      }),
-    });
-  };
-  // Step 2: Call the saveOneCountry() function on click when the save country heart button is clicked (useState)
-  // save button: store list of saved names in localStorage
-  function clickHandler() {
-    saveOneCountry();
+  // // Step 1: Declare a new function called saveOneCountry() which should send a POST request to the POST request to the https://backend-answer-keys.onrender.com/save-one-country (save-one-conuntry is the end point ) on the country details page
+  // const saveOneCountry = async () => {
+  //   // when we call the fetch() function, we only need to pass in the API url as one parameter when it's a GET request
+  //   // but hen we need to make a POST request, we have to pass in a second parameter: an object
+  //   await fetch("/api/save-one-country", {
+  //     method: "POST", // we need to say we're sending a POST request because by default it's always a GET request
+  //     headers: {
+  //       // the headers is where we put metadata about our request, includeing the data type that we pass in the body
+  //       // in this case we are saying we're  passing in JSON data in the body
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       country_name: country.name.common,
+  //     }),
+  //   });
+  // };
+  // // Step 2: Call the saveOneCountry() function on click when the save country heart button is clicked (useState)
+  // // save button: store list of saved names in localStorage
+  // function clickHandler() {
+  //   saveOneCountry();
 
-    setSaveBtn(true); // once clicked, set to saved
+  //   setSaveBtn(true); // once clicked, set to saved
+  // }
+
+  async function clickHandler(countryName) {
+    // Below we are checking if the item is already saved (true = saved, false = not saved)
+    if (saveBtn === false) {
+      // Below we are calling the API to /save-one-country
+      const response = await fetch("/api/save-one-country", {
+        method: "POST", // we are sending data to the backend
+        headers: {
+          "Content-Type": "application/json", //sets JSON format
+        },
+        body: JSON.stringify({
+          country_name: countryName, // sending the country name to the API
+        }),
+      });
+
+      //if the request succeeds, we turn the heart red
+      if (response.ok) {
+        setSaveBtn(true);
+      }
+    } else {
+      // the item is already saved so we UNSAVE it
+      const response = await fetch("/api/unsave-one-country", {
+        method: "POST", // API call method
+        headers: {
+          "Content-Type": "application/json", // sets JSON format
+        },
+        body: JSON.stringify({
+          country_name: countryName, // sends the name to unsave
+        }),
+      });
+
+      // Updates the UI back to gray once the unsave is successful
+      if (response.ok) {
+        setSaveBtn(false);
+      }
+    }
   }
 
   // count views for this country

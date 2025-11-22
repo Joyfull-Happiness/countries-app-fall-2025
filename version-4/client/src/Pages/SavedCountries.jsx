@@ -83,6 +83,24 @@ export default function SavedCountries({ countries }) {
     // we are setting the savedcountries state and saving all of the data as an array of objects (it's already )
     setSavedCountries(savedCountriesData);
   };
+  async function unsaveAllCountriesClick() {
+    const response = await fetch("api/unsave-all-countries", {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json", // sets JSON format
+      },
+    });
+    // checks if the response from the server was successful (status 200-299)
+    if (response.ok) {
+      // the next line clears the savedCountries list in the UI
+      setSavedCountries([]);
+      // the next line logs a helpful message for debugging
+      console.log("All countries were unsaved successfully.");
+    } else {
+      // This comment explains that the next line logs an error if the request failed
+      console.error("There was a problem unsaving all countries.");
+    }
+  }
 
   // i'm creating the variable savedCountryItems to map through savedCountries (passing through each country name that is saved in SavedName) the return the countries that are found using .find
   //using an arrow function we are passing through an item and checking if that item's common name (from the countries list passed through in the .find) matches the savedNames that we passed through in the .map.
@@ -110,6 +128,9 @@ export default function SavedCountries({ countries }) {
               <CountryCard key={key} country={country} />
             ))}
           </div>
+          <button onClick={unsaveAllCountriesClick}>
+            Unsave All Countries
+          </button>
         </section>
         {userInfo && <h2>Welcome {userInfo.fullName}!</h2>}
         <section className="section">

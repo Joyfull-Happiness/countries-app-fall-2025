@@ -54,13 +54,13 @@ async function getAllUsers() {
   return data.rows;
 }
 
-// //3. *POST /add-one-user
-// async function addOneUser(name, country_name, email, bio) {
-//   await db.query(
-//     "INSERT INTO users (name, country_name, email, bio) VALUES ($1, $2, $3, $4)",
-//     [name, country_name, email, bio]
-//   );
-// }
+//3. *POST /add-one-user
+async function addOneUser(name, country_name, email, bio) {
+  await db.query(
+    "INSERT INTO users (name, country_name, email, bio) VALUES ($1, $2, $3, $4)",
+    [name, country_name, email, bio]
+  );
+}
 
 //-------------------------------------
 //📊 SAVED COUNTRIES
@@ -79,17 +79,17 @@ async function saveOneCountry(country_name) {
   );
 }
 
-// //3. POST /unsave-one-country
-// async function unsaveOneCountry(country_name) {
-//   await db.query("DELETE FROM saved_countries WHERE country_name = $1", [
-//     country_name,
-//   ]);
-// }
+//3. POST /unsave-one-country
+async function unsaveOneCountry(country_name) {
+  await db.query("DELETE FROM saved_countries WHERE country_name = $1", [
+    country_name,
+  ]);
+}
 
-// //4. POST /unsave-all-countries
-// async function unsaveAllCountries() {
-//   await db.query("DELETE FROM saved_countries");
-// }
+//4. POST /unsave-all-countries
+async function unsaveAllCountries() {
+  await db.query("DELETE FROM saved_countries");
+}
 
 //-------------------------------------
 //📊 COUNTRY COUNTS
@@ -162,11 +162,11 @@ app.post("/unsave-one-country", async (req, res) => {
   res.send(`Success! ${country_name} was unsaved.`);
 });
 
-// //4. POST /unsave-all-countries
-// app.post("/unsave-all-countries", async (req, res) => {
-//   await unsaveAllCountries();
-//   res.send("Success! All countries were unsaved.");
-// });
+//4. POST /unsave-all-countries
+app.post("/unsave-all-countries", async (req, res) => {
+  await unsaveAllCountries();
+  res.json("Success! All countries were unsaved.");
+});
 //-------------------------------------
 //📊 COUNTRY COUNTS
 //-------------------------------------
