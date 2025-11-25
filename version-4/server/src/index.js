@@ -103,6 +103,15 @@ async function updateOneCountryCount(country_name) {
   );
   return updatedCountryCount.rows[0];
 }
+// //2. RESET COUNTRY COUNT
+// async function resetOneCountryCount(country_name) {
+//   const resetCountryCount = await db.query(
+//     "UPDATE country_counts SET count ='0' WHERE country_name = $1 RETURNING count",
+//     [country_name]
+//   );
+//   return resetCountryCount.rows[0];
+// }
+///update
 
 /*----------------------------------
 API Endpoints
@@ -186,6 +195,17 @@ app.post("/update-one-country-count", async (request, response) => {
   response.json({
     message: "Success! Country count was updated.",
     count: updatedCountry.count, // frontend now has access to data.count
+  });
+});
+
+app.post("/reset-one-country-count", async (request, response) => {
+  const { country_name } = request.body;
+  const resetCountry = await resetOneCountryCount(country_name);
+  //error handling add const= updated count
+
+  response.json({
+    message: "Success! Country count was reset.",
+    count: resetCountry.count, // frontend now has access to data.count
   });
 });
 /* 
