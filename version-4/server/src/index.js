@@ -103,6 +103,9 @@ async function updateOneCountryCount(country_name) {
   );
   return updatedCountryCount.rows[0];
 }
+
+///need to edit below
+//error with function
 // //2. RESET COUNTRY COUNT
 // async function resetOneCountryCount(country_name) {
 //   const resetCountryCount = await db.query(
@@ -111,7 +114,6 @@ async function updateOneCountryCount(country_name) {
 //   );
 //   return resetCountryCount.rows[0];
 // }
-///update
 
 /*----------------------------------
 API Endpoints
