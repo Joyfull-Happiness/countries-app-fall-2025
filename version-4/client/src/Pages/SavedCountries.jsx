@@ -14,6 +14,7 @@ export default function SavedCountries({ countries }) {
   // Update the state when input values change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // "..." is a spread operator which passes each item of the array in seperately
     setFormData({ ...formData, [name]: value });
   };
   // Step 1: Declare a new function called storeUserData() which should send a POST request to the APT to the /add-one-user endpoint
@@ -123,6 +124,7 @@ export default function SavedCountries({ countries }) {
       <main className="page">
         <section className="section">
           <h2>My Saved Countries</h2>
+
           <div className="saved-list">
             {savedCountryItems.map((country, key) => (
               <CountryCard key={key} country={country} />
