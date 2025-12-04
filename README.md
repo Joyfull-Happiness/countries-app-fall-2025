@@ -2,11 +2,11 @@
 
 ## 📌 Project Description & Purpose
 
-This project is ****\_\_\_****
+This project is \***\*\_countries app\_\*\***
 
 ## 🚀 Live Site
 
-Check out the app: https://your-project.netlify.app
+Check out the app: https://lajoies-countries-app-version-5.netlify.app/
 
 ## 🖼️ Screenshots
 
@@ -24,56 +24,92 @@ Your instructor will walk you through this process with the rest of the class. P
 
 This is what you can do on the app:
 
-- ***
-- ***
-- ***
-- ***
+- \*\*\* Search for any country using the global country database.
+
+- \*\*\* Save a country card you want to keep track of.
+
+- \*\*\* Sign up / log in to access your personalized Saved Countries page.
+
+- \*\*\* Filter countries by region or category.
+
+- \*\*\* Search countries by name with a responsive keyword search.
 
 ## 🛠️ Tech Stack
 
 **Frontend**
 
-- **Languages:** ****\_\_\_****
-- **Framework:** ****\_\_\_****
-- **Deployment:** ****\_\_\_****
+- **Languages:** HTML, CSS, JavaScript
+- **Framework:** React, Vite
+- **Deployment:** Netlify
 
 **Server/API**
 
-- **Languages:** ****\_\_\_****
-- **Framework:** ****\_\_\_****
-- **Deployment:** ****\_\_\_****
+- **Languages:** JavaScript, JSON, SQL
+- **Framework:** Node.js + Express
+- **Deployment:** Render
 
 **Database**
 
-- **Languages:** ****\_\_\_****
-- **Deployment:** ****\_\_\_****
+- **Languages:** SQL
+- **Deployment:** Neon (PostgreSQL)
 
 ## 🔹 API Documentation
 
 These are the API endpoints I built:
 
-1. ***
-2. ***
-3. ***
+1. \*\*\* GET /get-newest-user
 
-Learn more about the API endpoints here: _**[insert link to API documentation]**_
+2. \*\*\* GET /get-all-users
+
+3. \*\*\* POST /add-one-user
+
+4. \*\*\* GET /get-all-saved-countries
+
+5. \*\*\* POST /save-one-country
+
+6. \*\*\* POST /unsave-one-country
+
+7. \*\*\* POST /unsave-all-countries
+
+8. \*\*\* POST /update-one-country-count
+
+Learn more about the API endpoints here: _**https://github.com/Joyfull-Happiness/countries-app-fall-2025/blob/main/version-5/pseudo-code.txt**_
 
 ## 🗄️ Database Schema
 
 Here's the SQL I used to create my tables:
 
 ```sql
-Put your CREATE TABLE statements here!
-If you have more than one table, include them all.
+-- Users table stores basic profile information
+CREATE TABLE users (
+  user_id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  country_name VARCHAR NOT NULL,
+  email VARCHAR NOT NULL,
+  bio VARCHAR NOT NULL
+);
+
+-- Saved countries table stores user-saved country cards
+CREATE TABLE saved_countries (
+  saved_country_id SERIAL PRIMARY KEY,
+  country_name VARCHAR NOT NULL UNIQUE
+);
+
+-- Country counts table tracks how many times a country is saved
+CREATE TABLE country_counts (
+  country_count_id SERIAL PRIMARY KEY,
+  country_name VARCHAR NOT NULL UNIQUE,
+  count INTEGER NOT NULL
+);
 ```
 
 ## 💭 Reflections
 
-**What I learned:** ****\_\_\_****
+**What I learned:** \***\*\_\_\_\*\***
 
-**What I'm proud of:** ****\_\_\_****
+**What I'm proud of:** \***\*\_\_\_\*\***
 
-**What challenged me:** ****\_\_\_****
+**What challenged me:** \***\*\_\_\_\*\***
 
 **Future ideas for how I'd continue building this project:**
 
@@ -83,5 +119,5 @@ If you have more than one table, include them all.
 
 ## 🙌 Credits & Shoutouts
 
-Thanks to **\_\_\_\_** for ****\_\_****!
-And thanks to **\_\_\_\_** for ****\_\_****!
+Thanks to **\_\_\_\_** for \***\*\_\_\*\***!
+And thanks to **\_\_\_\_** for \***\*\_\_\*\***!
