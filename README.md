@@ -105,19 +105,19 @@ CREATE TABLE country_counts (
 
 ## 💭 Reflections
 
-**What I learned:** \***\*\_\_\_\*\***
+**What I learned:** How to build a full-stack workflow from database to frontend, how API routes connect each layer, and how to manage data flow using SQL, Express, and React.\*\*
 
-**What I'm proud of:** \***\*\_\_\_\*\***
+**What I'm proud of:** Building a functioning end-to-end app with user accounts, saved data, and dynamic filtering — and solving real debugging issues along the way.\*\*
 
-**What challenged me:** \***\*\_\_\_\*\***
+**What challenged me:** Handling JSON responses correctly and debugging SQL constraints.\*\*
 
 **Future ideas for how I'd continue building this project:**
 
-1. ***
-2. ***
-3. ***
+1. \*\*\* Add authentication with hashed passwords and user-specific saved countries.
+2. \*\*\*Create a more detailed country profile page with maps and cultural data.
+3. \*\*\* Add pagination, search suggestions, and improved UI animations for smoother UX.
 
 ## 🙌 Credits & Shoutouts
 
-Thanks to **\_\_\_\_** for \***\*\_\_\*\***!
-And thanks to **\_\_\_\_** for \***\*\_\_\*\***!
+Thanks to **Arainna Bakari and Makiba ** for Helping me power thorugh alll those debugging marathons**!
+And thanks to Xavier for being my go-to when I had CSS trouble**!
