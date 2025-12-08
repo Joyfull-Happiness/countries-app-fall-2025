@@ -1,4 +1,4 @@
-# 📝 Your Project's Title — Replace this with your app's name!
+# 📝 Countries App
 
 ## 📌 Project Description & Purpose
 
@@ -10,15 +10,12 @@ Check out the app: https://lajoies-countries-app-version-5.netlify.app/
 
 ## 🖼️ Screenshots
 
-Here is where you'll include a screenshot of your project to show it off!
+<img width="1485" height="848" alt="Screenshot 2025-12-08 at 10 57 54 AM" src="https://github.com/user-attachments/assets/eb74c43a-4ad8-4880-9526-47c6630b92b6" />
 
-Your instructor will walk you through this process with the rest of the class. Please be patient until the time comes! In the meantime, you can fill out all other sections of this template.
+<img width="1485" height="845" alt="Screenshot 2025-12-08 at 10 58 14 AM" src="https://github.com/user-attachments/assets/442ad0f3-4ba4-4419-a105-78b19da1a89f" />
 
-1. Use `Command + Control + Shift + 4` to take a screenshot of your site and copy the screenshot to your clipboard
-2. Find your Github README.md file on the Github website
-3. Edit the site by clicking on the Pencil icon ✏️
-4. Move your cursor to the position where you want to paste the screenshot, then paste it. Github will convert the pasted screenshot into an `<img>` tag
-5. Select "Commit changes..." to save your changes
+<img width="1488" height="845" alt="Screenshot 2025-12-08 at 10 58 20 AM" src="https://github.com/user-attachments/assets/20cfa4d9-c94b-4180-a4f4-fd2e35f0b8a3" />
+
 
 ## ✨ Features
 
