@@ -1,10 +1,6 @@
 # 📝 Countries App
 
-## 📌 This project is a simple, user-friendly tool that helps people explore and track countries from around the world. Users can search the global country database, filter results by region or category, and quickly find countries through a responsive keyword search. By creating an account, users can save country cards they want to revisit and access their own personalized Saved Countries page.
-
-## The purpose of this project is to make discovering global information easy, organized, and accessible. Whether someone is planning travel, studying geography, or just exploring the world, this tool keeps everything in one place and allows users to build their own collection of countries that matter to them.
-
-This project is \***\*\_countries app\_\*\***
+## 📌 This project is a simple, user-friendly tool that helps people explore and track countries from around the world. Users can search the global country database, filter results by region or category, and quickly find countries through a responsive keyword search. By creating an account, users can save country cards they want to revisit and access their own personalized Saved Countries page. The purpose of this project is to make discovering global information easy, organized, and accessible. Whether someone is planning travel, studying geography, or just exploring the world, this tool keeps everything in one place and allows users to build their own collection of countries that matter to them.
 
 ## 🚀 Live Site
 
