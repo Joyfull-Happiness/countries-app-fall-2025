@@ -1,4 +1,4 @@
-# 📝 Your Project's Title — Replace this with your app's name!
+# 📝 Countries App
 
 ## 📌 Project Description & Purpose
 

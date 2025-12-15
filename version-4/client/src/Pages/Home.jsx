@@ -6,17 +6,24 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
 export default function Home({ countries }) {
+  //("all") is the INITIAL STATE (initialize) which is an empty string
   const [searchBar, setSearchBar] = useState("");
   const [selectedRegionDropDown, setSelectedRegionDropDown] = useState("all");
 
+  //show countries or if there are no countries show an empty array
   let filteredCountries = countries || [];
 
   // Filter by search query
-  // here i'm checking if the user has typed something in the search bar
+  // next i'm checking if the user has typed something in the search bar
+  // here we're REASSIGNING i am applying a filter to the filteredCountries array,
+  //.filter() Creates a new array containing only countries that match.
+  // the callback function runs one time for every single item inside filteredCountries.
+  //(country) is the parameter name for the item currently being processed in the array.
+  // for each country in the array you need to
+  // //1) get the country's common name then convert it to lowercase and
+  // then check if it includes the search text and lowercase it again
   if (searchBar) {
-    // below i am applying a filter to the  filteredCountries array
     filteredCountries = filteredCountries.filter((country) => {
-      // for each tounry in hte array you need to 1) get the country's common name then convert it to lowercase and then check if it includes the search text and lowercase it again
       return country.name.common
         .toLowerCase()
         .includes(searchBar.toLowerCase());
@@ -44,6 +51,9 @@ export default function Home({ countries }) {
           type="text"
           placeholder="Search for a country..."
           value={searchBar}
+          //below is setting the use state to what's being inputted into the searchbar state
+          //below is called an annonymos function
+          //setter function is reassigning the value of the search bar variable 
           onChange={(e) => setSearchBar(e.target.value)}
           className="search-input"
         />
@@ -64,9 +74,10 @@ export default function Home({ countries }) {
       </div>
 
       <div className="card-container">
-        {/* Below i am looping through the sortedCountries array and displaying a CountryCard for each one */}
+        {/* Below i am looping through with the map funciton the filteredCountries array and displaying a CountryCard for each one */}
         {filteredCountries.map((country) => (
           // I am making a key for each CountryCard using the country’s common name
+          //country
           <CountryCard key={country.name?.common} country={country} />
         ))}
       </div>
